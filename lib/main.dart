@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Pages/SignIn.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +11,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SignIn(),
+    );
+
+    /*
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -28,11 +35,13 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(226, 242, 52, 52)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
+    */
   }
 }
 
