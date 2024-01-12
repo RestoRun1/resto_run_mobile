@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'Pages/SignIn.dart';
 
 void main() {
@@ -14,6 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SignIn(),
+      routes: {
+        '/signIn' : (context) => SignIn(),
+        '/signUp' : (context) => SignUp() 
+      },
     );
 
     /*
