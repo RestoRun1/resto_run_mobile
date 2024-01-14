@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resto_run_mobile/Pages/MainPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'Pages/SignIn.dart';
+import 'Pages/Reservation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/signIn' : (context) => SignIn(),
         '/signUp' : (context) => SignUp(),
-        '/mainPage' : (context) => MainPage() 
+        '/mainPage' : (context) => MainPage(),
+        '/reservation' : (context) => Reservation(),
       },
       
     );
