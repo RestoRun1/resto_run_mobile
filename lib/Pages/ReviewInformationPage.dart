@@ -17,7 +17,7 @@ class _ReviewInformationPageState extends State<ReviewInformationPage> {
   int _childrenCount = 0;
   String _sittingArea = 'Any';
   Timer? _countdownTimer;
-  int _remainingSeconds = 3; //5 * 60; // 5 minutes countdown
+  int _remainingSeconds = 5 * 60; // 5 minutes countdown
 
   @override
   void initState() {
