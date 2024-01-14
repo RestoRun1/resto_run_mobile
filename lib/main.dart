@@ -3,6 +3,7 @@ import 'package:resto_run_mobile/Pages/MainPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'Pages/SignIn.dart';
 import 'Pages/Reservation.dart';
+import 'Pages/ReviewInformationPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,12 +17,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: Reservation(),//MainPage(),
       routes: {
         '/signIn' : (context) => SignIn(),
         '/signUp' : (context) => SignUp(),
         '/mainPage' : (context) => MainPage(),
         '/reservation' : (context) => Reservation(),
+        '/reservationReview' : (context) => ReviewInformationPage(),
       },
       
     );
