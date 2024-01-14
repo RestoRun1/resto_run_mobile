@@ -3,6 +3,7 @@ import 'package:resto_run_mobile/Color/AppColors.dart';
 import 'package:resto_run_mobile/Components/HomeCarouselSlider.dart';
 import 'package:resto_run_mobile/Components/HomeSearchBar.dart';
 import "package:carousel_slider/carousel_slider.dart";
+import 'package:resto_run_mobile/Components/HorizontalListViewButton.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -24,7 +25,7 @@ class _MainPageState extends State<MainPage> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [0.4, 0],
-              colors: [AppColors.darkGreen, AppColors.white]
+              colors: [AppColors.darkGreen, AppColors.backgroundLightWhite]
             )
 
           ),
@@ -55,7 +56,12 @@ class _MainPageState extends State<MainPage> {
                             children: [Text("a"), Text("b")],
                           ),
                           Spacer(),
-                          Icon(Icons.photo)
+                          CircleAvatar(
+                            radius: 20,
+                            backgroundImage: AssetImage("assets/images/efe.png")
+                          ),
+
+                          //Image.asset('assets/images/efe.png',)
                         ],
                       ),
                     ),
@@ -66,14 +72,17 @@ class _MainPageState extends State<MainPage> {
                       ),
                     ),
 
+                    SizedBox(height: 25),
+
                     Container(
                       height: 100,
-                      width: 200,
+                      width: 300,
                       color: AppColors.lightRed,
+                    ),
+
+                    SafeArea(child: 
+                      HorizontalListViewButton()
                     )
-
-                    //HomeCarouselSlider()
-
                   ],
                 ),
               ],
