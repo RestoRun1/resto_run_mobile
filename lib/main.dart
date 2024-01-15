@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resto_run_mobile/Components/RestaurantGridLayout.dart';
 import 'package:resto_run_mobile/Pages/MainPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'Pages/SignIn.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/signUp' : (context) => SignUp(),
         '/mainPage' : (context) => MainPage(),
         '/reservation' : (context) => Reservation(),
+        '/GridLayoutTest' : (context) => RestaurantGridLayout()
       },
       
     );

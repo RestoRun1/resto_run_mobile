@@ -30,7 +30,7 @@ class _HorizontalListViewButton extends State<HorizontalListViewButton> {
             child: ListView.builder(
               itemBuilder: (context, index) => Container(
                 decoration: BoxDecoration(
-                    color: selectedButtonIndex == index ? AppColors.lightRed: AppColors.white,
+                  color: selectedButtonIndex == index ? AppColors.lightRed: AppColors.white,
                     borderRadius: BorderRadius.circular(16)),
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 height: 25,
