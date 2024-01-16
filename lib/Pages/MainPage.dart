@@ -38,9 +38,15 @@ class _MainPageState extends State<MainPage> {
             actions: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage("assets/efe.png")),
+                child: Row(
+                  children: [
+                    IconButton(onPressed: () => print("Search") ,icon: Icon(Icons.search, color: AppColors.white,)),
+                    SizedBox(width: 10,),
+                    CircleAvatar(
+                        radius: 20,
+                        backgroundImage: AssetImage("assets/efe.png")),
+                  ],
+                ),
               ),
             ],
           ),
