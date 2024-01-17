@@ -35,6 +35,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   carousel_slider: ^4.2.1
   intl: ^0.17.0
+  sizer: ^2.0.15
 
 
 dev_dependencies:
@@ -65,6 +66,8 @@ flutter:
   assets:
     - assets/efe.png
     - assets/kofteci.png
+    - assets/bottle_milk.png
+    - assets/bottle.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

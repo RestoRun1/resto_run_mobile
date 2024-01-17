@@ -33,14 +33,14 @@ class _MainPageState extends State<MainPage> {
                 onPressed: () {
                   _scaffoldKey.currentState?.openDrawer();
                 },
-                icon: Icon(Icons.menu, color: AppColors.white,)),
-            backgroundColor: AppColors.darkGreen,
+                icon: Icon(Icons.menu, color: AppColors.dotGrey,)),
+            backgroundColor: AppColors.white,
             actions: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    IconButton(onPressed: () => print("HASANNN") ,icon: Icon(Icons.search, color: AppColors.white,)),
+                    IconButton(onPressed: () => print("Search") ,icon: Icon(Icons.search, color: AppColors.dotGrey,)),
                     SizedBox(width: 10,),
                     CircleAvatar(
                         radius: 20,
@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> {
                 0
               ],
                   colors: [
-                AppColors.darkGreen,
+                AppColors.white,
                 AppColors.backgroundLightWhite
               ])),
           //height: MediaQuery.of(context).size.height * 0.4,
@@ -73,10 +73,10 @@ class _MainPageState extends State<MainPage> {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10 ),
-                  child: HomeSearchBar(),
-                ),
+                // Container(
+                //   padding: EdgeInsets.symmetric(horizontal: 10 ),
+                //   child: HomeSearchBar(),
+                // ),
                 SizedBox(height: 25),
                 Container(
                   height: 100,
