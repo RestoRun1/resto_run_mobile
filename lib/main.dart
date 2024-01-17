@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resto_run_mobile/Components/RestaurantGridLayout.dart';
+import 'package:resto_run_mobile/Pages/Checkout.dart';
 import 'package:resto_run_mobile/Pages/MainPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
@@ -18,14 +19,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: YourCart()),
+      home: SafeArea(child: Scaffold(body: Checkout())),
       routes: {
         '/signIn' : (context) => SignIn(),
         '/signUp' : (context) => SignUp(),
         '/mainPage' : (context) => MainPage(),
         '/reservation' : (context) => Reservation(),
         '/GridLayoutTest' : (context) => RestaurantGridLayout(),
-        '/yourCart' : (context) => YourCart()
+        '/yourCart' : (context) => YourCart(),
+        '/checkout' : (context) => Checkout()
       },
       
     );

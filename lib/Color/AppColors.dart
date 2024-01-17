@@ -21,4 +21,5 @@ class AppColors {
   static const Color productBackColor = Color.fromRGBO(248, 248, 251, 1);
 
   static const Color productText = Color.fromRGBO(73, 73, 73, 1);
+  static const Color checkOutTextColor = Color.fromRGBO(177, 177, 177, 1);
 }
