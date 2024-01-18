@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ReviewInformationPage.dart';
 
 class Reservation extends StatefulWidget {
   @override
@@ -91,7 +92,13 @@ class _ReservationState extends State<Reservation> {
               child: ElevatedButton(
                 child: Text('Reserve this table'),
                 onPressed: () {
-                  // Implement reservation logic
+                  // Implement your booking logic
+
+                  // After booking logic, navigate to the ReviewInformationPage
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ReviewInformationPage()),
+                  );
                 },
               ),
             ),

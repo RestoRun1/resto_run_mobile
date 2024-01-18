@@ -6,6 +6,7 @@ import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
 import 'Pages/SignIn.dart';
 import 'Pages/Reservation.dart';
+import 'Pages/ReviewInformationPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/signUp' : (context) => SignUp(),
         '/mainPage' : (context) => MainPage(),
         '/reservation' : (context) => Reservation(),
+        '/reservationReview' : (context) => ReviewInformationPage(),
         '/GridLayoutTest' : (context) => RestaurantGridLayout(),
         '/yourCart' : (context) => YourCart(),
         '/checkout' : (context) => Checkout()
