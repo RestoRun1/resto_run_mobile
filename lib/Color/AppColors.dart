@@ -15,4 +15,11 @@ class AppColors {
   static const Color unselectedTextGrey = Color.fromRGBO(155, 155, 155, 1);
 
   static const Color searchBarGrey = Color.fromRGBO(49, 49, 49, 1);
+
+  static const Color textGrey = Color.fromRGBO(54, 54, 54, 1);
+
+  static const Color productBackColor = Color.fromRGBO(248, 248, 251, 1);
+
+  static const Color productText = Color.fromRGBO(73, 73, 73, 1);
+  static const Color checkOutTextColor = Color.fromRGBO(177, 177, 177, 1);
 }
