@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ReviewInformationPage.dart';
+import 'package:resto_run_mobile/Color/AppColors.dart';
 
 class Reservation extends StatefulWidget {
   @override
@@ -7,6 +8,7 @@ class Reservation extends StatefulWidget {
 }
 
 class _ReservationState extends State<Reservation> {
+  int currentIndex = 0;
   int _numberOfAdults = 2;
   DateTime _selectedDate = DateTime.now();
   TimeOfDay _selectedTime = TimeOfDay(hour: 12, minute: 0);
@@ -40,6 +42,7 @@ class _ReservationState extends State<Reservation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: Text('Find table'),
         leading: IconButton(
@@ -47,10 +50,12 @@ class _ReservationState extends State<Reservation> {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
             Image.asset('assets/res1.png'),
+
             // Number of adults
             ListTile(
               title: Text('Number of Adults'),
@@ -73,12 +78,14 @@ class _ReservationState extends State<Reservation> {
               ),
             ),
             // Date Picker
+
             ListTile(
               title: Text('Date'),
               subtitle: Text("${_selectedDate.toLocal()}".split(' ')[0]),
               trailing: Icon(Icons.calendar_today),
               onTap: () => _selectDate(context),
             ),
+
             // Time Picker
             ListTile(
               title: Text('Time'),
@@ -86,11 +93,15 @@ class _ReservationState extends State<Reservation> {
               trailing: Icon(Icons.access_time),
               onTap: () => _selectTime(context),
             ),
+
             // Reserve Button
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: ElevatedButton(
-                child: Text('Reserve this table'),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.lightGreen
+                ),
+                child: Text('Reserve this table', style: TextStyle(color: AppColors.textGrey, fontSize: 14),),
                 onPressed: () {
                   // Implement your booking logic
 
@@ -102,16 +113,59 @@ class _ReservationState extends State<Reservation> {
                 },
               ),
             ),
+
             // Call Support Button
             TextButton(
-              child: Text('Call booking support'),
+              child: Text(('Call booking support'), style: TextStyle(color: AppColors.lightGreen, fontSize: 14),),
               onPressed: () {
                 // Implement support call logic
               },
+
             ),
           ],
         ),
       ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        onTap: (index) => setState(() => currentIndex = index),
+        selectedIconTheme: const IconThemeData(color: AppColors.lightGreen),
+
+        unselectedIconTheme:
+        const IconThemeData(color: AppColors.unselectedNavItem),
+
+        selectedLabelStyle: const TextStyle(
+            color: AppColors.lightGreen,
+            fontSize: 14,
+            fontWeight: FontWeight.bold),
+
+        unselectedLabelStyle: const TextStyle(
+            color: AppColors.unselectedNavItem,
+            fontSize: 10,
+            fontWeight: FontWeight.bold),
+        currentIndex: currentIndex,
+        items: const [
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: "Favourite",
+          ),
+
+          BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: "QR"),
+
+          BottomNavigationBarItem(icon: Icon(Icons.shop), label: "Shop"),
+
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notifications), label: "Notification"),
+        ],
+      ),
+
     );
   }
 }
