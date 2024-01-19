@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:resto_run_mobile/Components/RestaurantGridLayout.dart';
 import 'package:resto_run_mobile/Pages/Checkout.dart';
+import 'package:resto_run_mobile/Pages/CreditCardTest.dart';
 import 'package:resto_run_mobile/Pages/MainPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
@@ -8,6 +10,7 @@ import 'Pages/SignIn.dart';
 import 'Pages/Reservation.dart';
 
 void main() {
+  
   runApp(const MyApp());
 }
 
@@ -21,15 +24,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: SafeArea(child: Scaffold(body: Checkout())),
       routes: {
-        '/signIn' : (context) => SignIn(),
-        '/signUp' : (context) => SignUp(),
-        '/mainPage' : (context) => MainPage(),
-        '/reservation' : (context) => Reservation(),
-        '/GridLayoutTest' : (context) => RestaurantGridLayout(),
-        '/yourCart' : (context) => YourCart(),
-        '/checkout' : (context) => Checkout()
+        '/signIn': (context) => SignIn(),
+        '/signUp': (context) => SignUp(),
+        '/mainPage': (context) => MainPage(),
+        '/reservation': (context) => Reservation(),
+        '/GridLayoutTest': (context) => RestaurantGridLayout(),
+        '/yourCart': (context) => YourCart(),
+        '/checkout': (context) => Checkout()
       },
-      
     );
 
     /*

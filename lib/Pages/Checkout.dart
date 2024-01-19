@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
+import 'package:resto_run_mobile/Pages/CreditCardTest.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
 import 'package:sizer/sizer.dart';
+import 'package:flutter_credit_card/flutter_credit_card.dart';
 
 class Checkout extends StatefulWidget {
   const Checkout({super.key});
@@ -11,31 +14,269 @@ class Checkout extends StatefulWidget {
 }
 
 class _Checkout extends State<Checkout> {
+  final int INPUT_SELECTED = 0;
+  final int CARD_SELECTED = 1;
+
+  int selection = 0;
+
+  void payOrder() {
+    print("Pay Order is clicked");
+  }
+
   void swithcMyCards() {
-    print("Switch To My Card Panel");
+    setState(() {
+      selection = CARD_SELECTED;
+    });
   }
 
   void switchNewCards() {
-    print("Switch To New Card Panel");
+    setState(() {
+      selection = INPUT_SELECTED;
+    });
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      shrinkWrap: false,
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: MainBody(),
+        )
+      ],
+    );
+  }
+
+  Widget MainBody() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Expanded(
+            child: Container(),
+          ),
+          TitleRow(),
+          CardButtons(
+            switchMyCards: swithcMyCards,
+            switchNewCards: switchNewCards,
+          ),
+          const SizedBox(
+            height: 10,
+            width: double.infinity,
+          ),
+          
+          IndexedStack(
+            alignment: Alignment.topCenter,
+            index: selection,
+            children: [
+              CardInputSections(), // Index 0
+              aCard()
+            ],
+          ),
+
+          
+          Spacer(),
+          Text("We will send you an order details to your"),
+          Text("email after the succesfull payment"),
+
+          SizedBox(height: 30,),
+          
+          PayButton(),
+        ],
+      ),
+    );
+  }
+
+  Widget InputCreditCard() {
+    if (selection == INPUT_SELECTED) {
+      return CardInputSections();
+    }
+
+    String cardHolderName = "Efe Can Tepe";
+    String cardNumber = "4445 2901 0604 3021";
+    String expiryDate = "10/24";
+    String cvvCode = "431";
+    bool showBackView = false;
+
+    // void onCreditCardWidgetChange(CreditCardModel creditCardModel){
+    //   setState(() {
+    //     cardNumber = cardNumber;
+    //     expiryDate = expiryDate;
+    //     cardHolderName = cardHolderName;
+    //     cvvCode = cvvCode;
+    //     showBackView = showBackView;
+    //   });
+    // }
+
+    // CreditCardWidget creditCardWidget = CreditCardWidget(
+    //     cardNumber: cardNumber,
+    //     expiryDate: expiryDate,
+    //     cardHolderName: cardHolderName,
+    //     cvvCode: cvvCode,
+    //     showBackView: showBackView,
+    //     onCreditCardWidgetChange: (CreditCardModel creditCardModel){}
+    //   );
+
+    // return Expanded(
+    //   child: CreditCardWidget(
+    //     cardNumber: cardNumber,
+    //     expiryDate: expiryDate,
+    //     cardHolderName: cardHolderName,
+    //     cvvCode: cvvCode,
+    //     showBackView: showBackView,
+    //     onCreditCardWidgetChange:(CreditCardBrand cardBrand) {}
+    //   ),
+    // );
+
+    return Expanded(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+                color: AppColors.lightRed,
+              ),
+        ));
+  }
+
+  Widget PayButton() {
+    return Flexible(
+      flex: 1,
+      child: ElevatedButton(
+          style: ButtonStyle(
+            alignment: Alignment.center,
+            backgroundColor: MaterialStateProperty.all(AppColors.lightGreen),
+            foregroundColor: MaterialStateProperty.all(AppColors.white),
+          ),
+          onPressed: payOrder,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.lock),
+              const SizedBox(
+                width: 10,
+              ),
+              Text("Pay for the order")
+            ],
+          )),
+    );
+  }
+}
+
+class CardInputSections extends StatelessWidget {
+  const CardInputSections({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TitleRow(), 
-        CardButtons(switchMyCards: swithcMyCards, switchNewCards: switchNewCards,),
-        Column(
-
-        
+        Row(
           children: [
-
-            Text("Card Number")
-
+            Text(
+              "Card Number",
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textGrey),
+            ),
           ],
-        )
-
-
+        ),
+        Container(
+          width: double.infinity,
+          child: TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: AppColors.backgroundPurple,
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+              labelText: 'Enter Credit Card',
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          children: [
+            Text(
+              "Cardholder Name",
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textGrey),
+            ),
+          ],
+        ),
+        Container(
+          child: TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: AppColors.backgroundPurple,
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+              labelText: 'Name',
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Expiry Date',
+                      style: TextStyle(
+                          color: AppColors.textGrey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
+                  // Add some spacing between title and TextField
+                  TextField(
+                    // Your first TextField properties go here
+                    decoration: InputDecoration(
+                      hintText: "MM / YYYY",
+                      filled: true,
+                      fillColor: AppColors.backgroundPurple,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(width: 16.0), // Add some spacing between the columns
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('CVV / CVC',
+                      style: TextStyle(
+                          color: AppColors.textGrey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
+                  TextField(
+                    // Your second TextField properties go here
+                    decoration: InputDecoration(
+                      hintText: "_ _ _ ",
+                      filled: true,
+                      fillColor: AppColors.backgroundPurple,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
       ],
     );
   }
@@ -132,56 +373,59 @@ class _CardButtonsState extends State<CardButtons> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return ListTile(
+      title: Row(
         children: [
-          ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      cardChoice == NEW_CARDS_SELECTED
-                          ? AppColors.lightGreen
-                          : AppColors.productBackColor),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ))),
-              onPressed: () => handleNewCardTap(),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.credit_card,
-                    color: cardChoice == NEW_CARDS_SELECTED
-                        ? AppColors.white
-                        : AppColors.textGrey,
-                  ),
-                  Text(
-                    "New Cards",
-                    style: TextStyle(
-                        color: cardChoice == NEW_CARDS_SELECTED
-                            ? AppColors.white
-                            : AppColors.textGrey),
-                  )
-                ],
-              )),
-          ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      cardChoice == MY_CARDS_SELECTED
-                          ? AppColors.lightGreen
-                          : AppColors.productBackColor),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ))),
-              onPressed: () => handleMyCardsTaps(),
-              child: Text(
-                "My Cards",
-                style: TextStyle(
-                    color: cardChoice == MY_CARDS_SELECTED
-                        ? AppColors.white
-                        : AppColors.textGrey),
-              )),
+          Expanded(
+            child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        cardChoice == NEW_CARDS_SELECTED
+                            ? AppColors.lightGreen
+                            : AppColors.productBackColor),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ))),
+                onPressed: () => handleNewCardTap(),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.credit_card,
+                      color: cardChoice == NEW_CARDS_SELECTED
+                          ? AppColors.white
+                          : AppColors.textGrey,
+                    ),
+                    Text(
+                      "New Cards",
+                      style: TextStyle(
+                          color: cardChoice == NEW_CARDS_SELECTED
+                              ? AppColors.white
+                              : AppColors.textGrey),
+                    )
+                  ],
+                )),
+          ),
+          Expanded(
+            child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        cardChoice == MY_CARDS_SELECTED
+                            ? AppColors.lightGreen
+                            : AppColors.productBackColor),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ))),
+                onPressed: () => handleMyCardsTaps(),
+                child: Text(
+                  "My Cards",
+                  style: TextStyle(
+                      color: cardChoice == MY_CARDS_SELECTED
+                          ? AppColors.white
+                          : AppColors.textGrey),
+                )),
+          ),
         ],
       ),
     );
