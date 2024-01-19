@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:resto_run_mobile/Color/AppColors.dart';
 
 class ReviewInformationPage extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class ReviewInformationPage extends StatefulWidget {
 }
 
 class _ReviewInformationPageState extends State<ReviewInformationPage> {
+
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -15,9 +17,10 @@ class _ReviewInformationPageState extends State<ReviewInformationPage> {
   bool _smsReminder = false;
   int _elderlyCount = 0;
   int _childrenCount = 0;
+  int currentIndex = 0;
   String _sittingArea = 'Any';
   Timer? _countdownTimer;
-  int _remainingSeconds = 5 * 60; // 5 minutes countdown
+  int _remainingSeconds = 15; //5 * 60; // 5 minutes countdown
 
   @override
   void initState() {
@@ -34,6 +37,7 @@ class _ReviewInformationPageState extends State<ReviewInformationPage> {
     _detailNotesController.dispose();
     super.dispose();
   }
+
   void _startCountdown() {
     _countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (_remainingSeconds > 0) {
@@ -137,7 +141,23 @@ class _ReviewInformationPageState extends State<ReviewInformationPage> {
   }
 
   Widget _buildDetailNotes() {
-    return TextFormField(
+    return Center(
+        child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              decoration: const InputDecoration(
+                  labelText: 'Detail notes',
+                  hintText: 'e.g proposal, anniversaries, birthdays, allergies...etc',
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white),
+              //controller: _controller,
+              onSubmitted: (String value) {
+                debugPrint(value);
+              },
+            )));
+
+    /*return TextFormField(
       controller: _detailNotesController,
       maxLines: null,
       maxLength: 100,
@@ -146,18 +166,19 @@ class _ReviewInformationPageState extends State<ReviewInformationPage> {
         hintText: 'e.g proposal, anniversaries, birthdays, allergies...etc',
         counterText: '${_detailNotesController.text.length}/100',
       ),
-    );
+    );*/
   }
 
   Widget _buildButtonChild() {
     if (_remainingSeconds > 0) {
       int minutes = _remainingSeconds ~/ 60;
       int seconds = _remainingSeconds % 60;
-      return Text('Book table (${minutes}:${seconds.toString().padLeft(2, '0')})');
+      return Text('Book table (${minutes}:${seconds.toString().padLeft(2, '0')})', style: TextStyle(color: AppColors.textGrey, fontSize: 14),);
     } else {
       return Text('Re-select table');
     }
   }
+
   Widget _buildReservationInfo() {
     return Container(
       padding: EdgeInsets.all(16),
@@ -181,7 +202,8 @@ class _ReviewInformationPageState extends State<ReviewInformationPage> {
               IconButton(
                 icon: Icon(Icons.edit),
                 onPressed: () {
-                  // TODO: Implement the edit functionality
+                  Navigator.of(context).pop(); // Dismiss the dialog
+                  Navigator.pop(context);
                 },
               ),
             ],
@@ -252,6 +274,39 @@ class _ReviewInformationPageState extends State<ReviewInformationPage> {
           ),
         ),
       ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        onTap: (index) => setState(() => currentIndex = index),
+        selectedIconTheme: const IconThemeData(color: AppColors.lightGreen),
+        unselectedIconTheme:
+        const IconThemeData(color: AppColors.unselectedNavItem),
+        selectedLabelStyle: const TextStyle(
+            color: AppColors.lightGreen,
+            fontSize: 14,
+            fontWeight: FontWeight.bold),
+        unselectedLabelStyle: const TextStyle(
+            color: AppColors.unselectedNavItem,
+            fontSize: 10,
+            fontWeight: FontWeight.bold),
+        currentIndex: currentIndex,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: "Favourite",
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: "QR"),
+          BottomNavigationBarItem(icon: Icon(Icons.shop), label: "Shop"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notifications), label: "Notification"),
+        ],
+      ),
+
     );
   }
 }
