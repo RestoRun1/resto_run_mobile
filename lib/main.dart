@@ -4,6 +4,7 @@ import 'package:resto_run_mobile/Components/RestaurantGridLayout.dart';
 import 'package:resto_run_mobile/Pages/Checkout.dart';
 import 'package:resto_run_mobile/Pages/CreditCardTest.dart';
 import 'package:resto_run_mobile/Pages/MainPage.dart';
+import 'package:resto_run_mobile/Pages/PaymentSuccessPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
 import 'Pages/SignIn.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SafeArea(child: Scaffold(body: Checkout())),
+      home: PaymentSuccessPage(),
       routes: {
         '/signIn': (context) => SignIn(),
         '/signUp': (context) => SignUp(),

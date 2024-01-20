@@ -93,36 +93,40 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          onTap: (index) => setState(() => currentIndex = index),
-          selectedIconTheme: const IconThemeData(color: AppColors.lightGreen),
-          unselectedIconTheme:
-              const IconThemeData(color: AppColors.unselectedNavItem),
-          selectedLabelStyle: const TextStyle(
-              color: AppColors.lightGreen,
-              fontSize: 14,
-              fontWeight: FontWeight.bold),
-          unselectedLabelStyle: const TextStyle(
-              color: AppColors.unselectedNavItem,
-              fontSize: 10,
-              fontWeight: FontWeight.bold),
-          currentIndex: currentIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: "Favourite",
-            ),
-            BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: "QR"),
-            BottomNavigationBarItem(icon: Icon(Icons.shop), label: "Shop"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.notifications), label: "Notification"),
-          ],
-        ),
+        bottomNavigationBar: navBar(),
       );
+
+  BottomNavigationBar navBar() {
+    return BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        onTap: (index) => setState(() => currentIndex = index),
+        selectedIconTheme: const IconThemeData(color: AppColors.lightGreen),
+        unselectedIconTheme:
+            const IconThemeData(color: AppColors.unselectedNavItem),
+        selectedLabelStyle: const TextStyle(
+            color: AppColors.lightGreen,
+            fontSize: 14,
+            fontWeight: FontWeight.bold),
+        unselectedLabelStyle: const TextStyle(
+            color: AppColors.unselectedNavItem,
+            fontSize: 10,
+            fontWeight: FontWeight.bold),
+        currentIndex: currentIndex,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: "Favourite",
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: "QR"),
+          BottomNavigationBarItem(icon: Icon(Icons.shop), label: "Shop"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notifications), label: "Notification"),
+        ],
+      );
+  }
 }
