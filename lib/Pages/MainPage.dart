@@ -32,19 +32,10 @@ class _MainPageState extends State<MainPage> {
           borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))
         ),
 
-        backgroundColor: Colors.blue,
+        backgroundColor: AppColors.lightGreen,
 
         (context) {
-          return SizedBox(
-            height: 540 / 812 * currentHeight,
-            width: currentWidth,
-            child: Container(
-              
-              child: Text("AA"),
-             
-            ),
-
-          );
+          return NotificationBottomSheet(currentHeight: currentHeight, currentWidth: currentWidth);
         },
       );
     }
@@ -171,6 +162,48 @@ class _MainPageState extends State<MainPage> {
         BottomNavigationBarItem(
             icon: Icon(Icons.notifications), label: "Notification"),
       ],
+    );
+  }
+}
+
+class NotificationBottomSheet extends StatelessWidget {
+  const NotificationBottomSheet({
+    super.key,
+    required this.currentHeight,
+    required this.currentWidth,
+  });
+
+  final double currentHeight;
+  final double currentWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 540 / 812 * currentHeight,
+      width: currentWidth,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20.75, 20, 20.75, 0 ),
+        child: Column(
+
+          crossAxisAlignment: CrossAxisAlignment.start,
+
+          children: [
+
+            Text("New", 
+            style: TextStyle(
+
+              color: AppColors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16
+
+            ),
+            
+            )
+
+          ],
+        )
+      ),
+    
     );
   }
 }
