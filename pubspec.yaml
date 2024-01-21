@@ -74,6 +74,9 @@ flutter:
     - assets/bottle.png
     - assets/paymentSuccess.svg
     - assets/rightArrow.svg
+    - assets/greenStatusCircle.svg
+    - assets/darkGreenStatusCircle.svg
+    - assets/selected.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

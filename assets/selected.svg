@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <circle
+     id="Ellipse 188"
+     cx="12.000002"
+     cy="12"
+     fill="#8eb094"
+     stroke="#2f4b4e"
+     style="stroke-width:1"
+     r="11.5" />
+  <circle
+     id="Ellipse 193"
+     cx="12"
+     cy="12"
+     r="6"
+     fill="#2f4b4e" />
+</svg>

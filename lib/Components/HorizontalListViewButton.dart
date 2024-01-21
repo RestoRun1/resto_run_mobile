@@ -21,25 +21,29 @@ class _HorizontalListViewButton extends State<HorizontalListViewButton> {
   Widget build(BuildContext context) {
     final List<String> tags = ["All Nearby", "Asian", "Italian", "Turkish"];
 
-    return Container(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12 / 389 * MediaQuery.sizeOf(context).width),
       child: SingleChildScrollView(
           child: Column(
         children: [
           SizedBox(
-            height: 75,
+            height : 57 / 812 * MediaQuery.sizeOf(context).height ,
             child: ListView.builder(
-              itemBuilder: (context, index) => Container(
-                decoration: BoxDecoration(
-                  color: selectedButtonIndex == index ? AppColors.lightRed: AppColors.white,
-                    borderRadius: BorderRadius.circular(16)),
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                height: 25,
-                margin: EdgeInsets.all(10),
-                child: Center(
+              itemBuilder: (context, index) => SizedBox(
+      
+                height: 38 / 812 * MediaQuery.sizeOf(context).height ,
+                width: 107 / 389 * MediaQuery.sizeOf(context).width, 
+      
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: selectedButtonIndex == index ? AppColors.lightRed: AppColors.white,
+                      borderRadius: BorderRadius.circular(16)),
+                  margin: EdgeInsets.fromLTRB(0,0,8 / 389 * MediaQuery.sizeOf(context).width,0),
                   child: TextButton(
                     child: Text(
                       tags[index],
                       style: TextStyle(
+                          fontSize: 11,
                           color: index == selectedButtonIndex
                               ? AppColors.white
                               : AppColors.dotBlack),
