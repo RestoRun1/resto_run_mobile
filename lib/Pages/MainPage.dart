@@ -25,6 +25,30 @@ class _MainPageState extends State<MainPage> {
     final double currentWidth = MediaQuery.sizeOf(context).width;
     final double currentHeight = MediaQuery.sizeOf(context).height;
 
+    void openBottom() {
+      _scaffoldKey.currentState?.showBottomSheet(
+
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))
+        ),
+
+        backgroundColor: Colors.blue,
+
+        (context) {
+          return SizedBox(
+            height: 540 / 812 * currentHeight,
+            width: currentWidth,
+            child: Container(
+              
+              child: Text("AA"),
+             
+            ),
+
+          );
+        },
+      );
+    }
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: PreferredSize(
@@ -81,9 +105,9 @@ class _MainPageState extends State<MainPage> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
           child: Column(
             children: [
-
-              SizedBox(height: 35 / 812 * currentHeight,),
-
+              SizedBox(
+                height: 35 / 812 * currentHeight,
+              ),
               Container(
                 height: 100,
                 width: 300,
@@ -103,24 +127,17 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
       ),
-      bottomNavigationBar: navBar(),
+      bottomNavigationBar: navBar(openBottom),
     );
   }
 
-  BottomNavigationBar navBar() {
+  BottomNavigationBar navBar(Function openBottom) {
     void handleTap(index) {
       setState(() => currentIndex = index);
 
       if (index == 4) {
-        showBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return SizedBox(
-                height: 300,
-                width: 200,
-                child: Container(color: Colors.amber),
-              );
-            });
+        print("LETS GOOOOO");
+        openBottom();
       }
     }
 
