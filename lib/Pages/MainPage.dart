@@ -6,6 +6,7 @@ import "package:carousel_slider/carousel_slider.dart";
 import 'package:resto_run_mobile/Components/HorizontalListViewButton.dart';
 import 'package:resto_run_mobile/Components/RestaurantGridLayout.dart';
 import 'package:resto_run_mobile/Components/SideBar.dart';
+import 'package:resto_run_mobile/helper.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -27,15 +28,12 @@ class _MainPageState extends State<MainPage> {
 
     void openBottom() {
       _scaffoldKey.currentState?.showBottomSheet(
-
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))
-        ),
-
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
         backgroundColor: AppColors.lightGreen,
-
         (context) {
-          return NotificationBottomSheet(currentHeight: currentHeight, currentWidth: currentWidth);
+          return NotificationBottomSheet(
+              currentHeight: currentHeight, currentWidth: currentWidth);
         },
       );
     }
@@ -126,10 +124,12 @@ class _MainPageState extends State<MainPage> {
     void handleTap(index) {
       setState(() => currentIndex = index);
 
+      /*
       if (index == 4) {
         print("LETS GOOOOO");
         openBottom();
       }
+      */
     }
 
     return BottomNavigationBar(
@@ -181,29 +181,24 @@ class NotificationBottomSheet extends StatelessWidget {
     return SizedBox(
       height: 540 / 812 * currentHeight,
       width: currentWidth,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.75, 20, 20.75, 0 ),
-        child: Column(
+      child: const Padding(
+          padding: EdgeInsets.fromLTRB(20.75, 20, 20.75, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "New",
+                style: TextStyle(
+                    color: AppColors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
 
-          crossAxisAlignment: CrossAxisAlignment.start,
+              
 
-          children: [
 
-            Text("New", 
-            style: TextStyle(
-
-              color: AppColors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 16
-
-            ),
-            
-            )
-
-          ],
-        )
-      ),
-    
+            ],
+          )),
     );
   }
 }
