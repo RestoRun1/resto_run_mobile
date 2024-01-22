@@ -24,4 +24,6 @@ class AppColors {
   static const Color checkOutTextColor = Color.fromRGBO(177, 177, 177, 1);
 
   static const Color backgroundPurple = Color.fromRGBO(248, 248, 251, 1);
+
+  static const Color notificationGreen = Color.fromRGBO(47, 75, 78, 1);
 }
