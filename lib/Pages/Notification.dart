@@ -37,45 +37,62 @@ class _NotificationState extends State<NotificationPage> {
     final double currentWidth = MediaQuery.sizeOf(context).width;
     final double currentHeight = MediaQuery.sizeOf(context).height;
 
-    return Container(
-      color: AppColors.darkGreen,
-      child: Column(
-        children: <Widget>[
-          GestureDetector(
-            onDoubleTap: () {
-              goBackNotificationPanel();
-            },
-            child: SizedBox(
-              height: Helper.dependOnHeight(216) * currentHeight,
-              child: Container(
-                color: AppColors.darkGreen,
-              ),
-            ),
-          ),
-          Expanded(
-            child: IndexedStack(
-              index: index,
-              children: [
-                Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.darkGreen,
+        leading: BackButton(color: AppColors.white,)
+      ),
+
+      body: SafeArea(
+        child: Container(
+          color: AppColors.darkGreen,
+          child: Column(
+            children: <Widget>[
+              GestureDetector(
+                onDoubleTap: () {
+                  goBackNotificationPanel();
+                },
+                child: SizedBox(
+                  height: Helper.dependOnHeight(70) * currentHeight,
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(20.75, 0, 20.75, 0),
+                    color: AppColors.darkGreen,
+                    alignment: Alignment.centerLeft,
+                    child: const Text("Notifications", 
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 20
+                    ) , ),
+
                   ),
-                  child: NotificationPanel(handleRowClick: handleRowClick),
                 ),
-                NotificationExplanation(
-                    title: title ?? "",
-                    image: image ?? "",
-                    description: description ?? ""),
-              ],
-            ),
-          )
-        ],
+              ),
+              Expanded(
+                child: IndexedStack(
+                  index: index,
+                  children: [
+                    Container(
+                      height: double.infinity,
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: NotificationPanel(handleRowClick: handleRowClick),
+                    ),
+                    NotificationExplanation(
+                        title: title ?? "",
+                        image: image ?? "",
+                        description: description ?? ""),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

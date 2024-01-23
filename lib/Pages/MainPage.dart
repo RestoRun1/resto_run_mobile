@@ -27,15 +27,7 @@ class _MainPageState extends State<MainPage> {
     final double currentHeight = MediaQuery.sizeOf(context).height;
 
     void openBottom() {
-      _scaffoldKey.currentState?.showBottomSheet(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
-        backgroundColor: AppColors.lightGreen,
-        (context) {
-          return NotificationBottomSheet(
-              currentHeight: currentHeight, currentWidth: currentWidth);
-        },
-      );
+      print("JKASHDSAKJD");
     }
 
     return Scaffold(
@@ -124,12 +116,9 @@ class _MainPageState extends State<MainPage> {
     void handleTap(index) {
       setState(() => currentIndex = index);
 
-      /*
       if (index == 4) {
-        print("LETS GOOOOO");
-        openBottom();
+        Navigator.pushNamed(context, '/notification');
       }
-      */
     }
 
     return BottomNavigationBar(
@@ -193,10 +182,6 @@ class NotificationBottomSheet extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 16),
               ),
-
-              
-
-
             ],
           )),
     );
