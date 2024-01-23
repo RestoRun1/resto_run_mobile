@@ -26,6 +26,12 @@ class _NotificationState extends State<NotificationPage> {
     });
   }
 
+  void goBackNotificationPanel() {
+    setState(() {
+      index = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final double currentWidth = MediaQuery.sizeOf(context).width;
@@ -35,10 +41,15 @@ class _NotificationState extends State<NotificationPage> {
       color: AppColors.darkGreen,
       child: Column(
         children: <Widget>[
-          SizedBox(
-            height: Helper.dependOnHeight(216) * currentHeight,
-            child: Container(
-              color: AppColors.darkGreen,
+          GestureDetector(
+            onDoubleTap: () {
+              goBackNotificationPanel();
+            },
+            child: SizedBox(
+              height: Helper.dependOnHeight(216) * currentHeight,
+              child: Container(
+                color: AppColors.darkGreen,
+              ),
             ),
           ),
           Expanded(
