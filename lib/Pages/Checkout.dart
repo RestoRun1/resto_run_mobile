@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
 import 'package:resto_run_mobile/Pages/CreditCardTest.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
+import 'package:resto_run_mobile/helper.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
@@ -20,7 +21,7 @@ class _Checkout extends State<Checkout> {
   int selection = 0;
 
   void payOrder() {
-    print("Pay Order is clicked");
+    Navigator.pushNamed(context, '/paymentSuccess');
   }
 
   void swithcMyCards() {
@@ -37,14 +38,46 @@ class _Checkout extends State<Checkout> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      shrinkWrap: false,
-      slivers: [
-        SliverFillRemaining(
-          hasScrollBody: false,
-          child: MainBody(),
-        )
-      ],
+
+    final double currentWidth = MediaQuery.sizeOf(context).width;
+    final double currentHeight = MediaQuery.sizeOf(context).height;
+
+    return Scaffold(
+
+      appBar: AppBar(
+        leading: SizedBox(
+          width: Helper.dependOnWidth(45) * currentWidth  ,
+
+          child: Container(
+
+            decoration: const BoxDecoration(
+
+              color: AppColors.backgroundLightWhite
+
+            ),
+
+            child: const BackButton(
+              color: AppColors.darkBlueBackButtn  
+              
+            ),
+          ),
+
+        ),
+
+      ),
+
+
+      body: SafeArea(
+        child: CustomScrollView(
+          shrinkWrap: false,
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: MainBody(),
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -65,7 +98,6 @@ class _Checkout extends State<Checkout> {
             height: 10,
             width: double.infinity,
           ),
-          
           IndexedStack(
             alignment: Alignment.topCenter,
             index: selection,
@@ -74,14 +106,8 @@ class _Checkout extends State<Checkout> {
               aCard()
             ],
           ),
-
-          
-          Spacer(),
           Text("We will send you an order details to your"),
           Text("email after the succesfull payment"),
-
-          SizedBox(height: 30,),
-          
           PayButton(),
         ],
       ),
@@ -131,11 +157,11 @@ class _Checkout extends State<Checkout> {
 
     return Expanded(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-                color: AppColors.lightRed,
-              ),
-        ));
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        color: AppColors.lightRed,
+      ),
+    ));
   }
 
   Widget PayButton() {

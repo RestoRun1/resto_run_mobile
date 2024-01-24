@@ -32,6 +32,14 @@ class _NotificationState extends State<NotificationPage> {
     });
   }
 
+  void handleBackButton() {
+    if (index == 1) {
+      goBackNotificationPanel();
+      return;
+    }
+    Navigator.maybePop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final double currentWidth = MediaQuery.sizeOf(context).width;
@@ -39,10 +47,11 @@ class _NotificationState extends State<NotificationPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.darkGreen,
-        leading: BackButton(color: AppColors.white,)
-      ),
-
+          backgroundColor: AppColors.darkGreen,
+          leading: BackButton(
+            color: AppColors.white,
+            onPressed: handleBackButton,
+          )),
       body: SafeArea(
         child: Container(
           color: AppColors.darkGreen,
@@ -58,12 +67,10 @@ class _NotificationState extends State<NotificationPage> {
                     padding: const EdgeInsets.fromLTRB(20.75, 0, 20.75, 0),
                     color: AppColors.darkGreen,
                     alignment: Alignment.centerLeft,
-                    child: const Text("Notifications", 
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 20
-                    ) , ),
-
+                    child: index == 0 ? const Text(
+                      "Notifications",
+                      style: TextStyle(color: AppColors.white, fontSize: 20),
+                    ) : Container(),
                   ),
                 ),
               ),

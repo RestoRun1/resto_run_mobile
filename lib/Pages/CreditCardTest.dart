@@ -36,30 +36,7 @@ class aCard extends StatelessWidget{
         ),
 
         SizedBox(height: 20,),
-
-        Container(
-          height: 200,
-          width: 300,
-          child: ListView(
-            children: [
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-              Text("SSS", style: TextStyle(color: Colors.black),),
-            ],
-          ),
-
-        )
-
-        
+  
       ],
     );
   }

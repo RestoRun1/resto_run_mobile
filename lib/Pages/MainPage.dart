@@ -39,7 +39,7 @@ class _MainPageState extends State<MainPage> {
               onPressed: () {
                 _scaffoldKey.currentState?.openDrawer();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.menu,
                 color: AppColors.dotGrey,
               )),
@@ -51,14 +51,14 @@ class _MainPageState extends State<MainPage> {
                 children: [
                   IconButton(
                       onPressed: () => print("Search"),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.search,
                         color: AppColors.dotGrey,
                       )),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  CircleAvatar(
+                  const CircleAvatar(
                       radius: 20,
                       backgroundImage: AssetImage("assets/efe.png")),
                 ],
@@ -116,7 +116,9 @@ class _MainPageState extends State<MainPage> {
     void handleTap(index) {
       setState(() => currentIndex = index);
 
-      if (index == 4) {
+      if (index == 3) {
+        Navigator.pushNamed(context, '/yourCart');
+      } else if (index == 4) {
         Navigator.pushNamed(context, '/notification');
       }
     }
