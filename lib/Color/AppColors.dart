@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-
   // White and Black maybe there will be a different themes
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
   static const Color black = Colors.black;
-  
+
   static const Color buttonTextGreen = Color.fromRGBO(47, 75, 78, 1);
   static const Color unselectedNavItem = Color.fromRGBO(141, 141, 141, 1);
   static const Color lightGreen = Color.fromRGBO(142, 176, 148, 1);
@@ -23,11 +22,15 @@ class AppColors {
   static const Color backgroundPurple = Color.fromRGBO(248, 248, 251, 1);
   static const Color notificationGreen = Color.fromRGBO(47, 75, 78, 1);
   static const Color darkBlueBackButtn = Color.fromRGBO(90, 108, 243, 1);
-  
-  
-  // Profile Page Colors It is not necessary 
+
+  // Profile Page Colors It is not necessary
   static const Color callBlue = Color.fromRGBO(66, 170, 255, 1);
-  static const Color mailGreen = Color.fromRGBO(73, 219, 200, 1); /* Assuming an alpha value of 1 for full opacity */
+  static const Color mailGreen = Color.fromRGBO(
+      73, 219, 200, 1); /* Assuming an alpha value of 1 for full opacity */
   static const Color tarifOrange = Color.fromRGBO(250, 160, 0, 1);
   static const Color settingsRed = Color.fromRGBO(252, 115, 57, 1);
+
+  static const Color notificationYellow = Color.fromRGBO(255, 170, 0, 1);
+
+  static const Color notificationPurple = Color.fromRGBO(175, 150, 251, 1);
 }
