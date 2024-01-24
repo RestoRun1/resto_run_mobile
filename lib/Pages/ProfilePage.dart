@@ -14,14 +14,17 @@ class ProfilePage extends StatelessWidget {
         body: SafeArea(
       child: Stack(
         children: [
-
-          Center(child: createProfileImage(currentWidth)),
-          
           upContainer(),
-
-          downContainer()
-
-
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              DownContainer(),
+            ],
+          ),
+          Positioned(
+              left: Helper.dependOnWidth(140.04) * currentWidth + 10,
+              top: Helper.dependOnHeight(99) * currentHeight,
+              child: createProfileImage(currentHeight))
         ],
       ),
 
@@ -52,19 +55,8 @@ class ProfilePage extends StatelessWidget {
     ));
   }
 
-  Container downContainer() {
-    return Container(
-
-      
-
-    );
-  }
-
-  Container upContainer() {
-    return Container(
-
-
-    );
+  Widget upContainer() {
+    return Container(color: AppColors.darkGreen);
   }
 
   Text createName() {
@@ -77,13 +69,43 @@ class ProfilePage extends StatelessWidget {
 
   Widget createProfileImage(double currentHeight) {
     return CircleAvatar(
-      radius: Helper.dependOnWidth(104) * currentHeight / 4,
-      backgroundImage: AssetImage("assets/efe.png"),
+      radius: Helper.dependOnWidth(104) * currentHeight / 4 + 3,
+      backgroundColor: AppColors.white,
+      child: CircleAvatar(
+        radius: Helper.dependOnWidth(104) * currentHeight / 4,
+        backgroundImage: AssetImage("assets/efe.png"),
+      ),
     );
   }
 
-  Widget ProfileitemRow(double currentWidth, Color backgroundColor,
-      Color iconColor, String mainText, String? secondaryText, IconData icon) {
+  // Widget buildProfileImage() => CircleAvatar(
+
+  //   radius: ,
+
+  // )
+}
+
+class ProfileItemRow extends StatelessWidget {
+  const ProfileItemRow({
+    super.key,
+    required this.backgroundColor,
+    required this.iconColor,
+    required this.mainText,
+    required this.secondaryText,
+    required this.icon,
+  });
+
+  final Color backgroundColor;
+  final Color iconColor;
+  final String mainText;
+  final String? secondaryText;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final double currentWidth = MediaQuery.sizeOf(context).width;
+    final double currentHeight = MediaQuery.sizeOf(context).height;
+
     return Container(
       padding:
           EdgeInsets.fromLTRB(0, 0, 0, Helper.dependOnWidth(24) * currentWidth),
@@ -107,14 +129,14 @@ class ProfilePage extends StatelessWidget {
             children: [
               Text(
                 mainText,
-                style: TextStyle(
+                style: const TextStyle(
                     color: AppColors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),
               if (secondaryText != null)
                 Text(
-                  secondaryText,
+                  secondaryText ?? "",
                   style: TextStyle(
                       color: AppColors.unselectedTextGrey, fontSize: 12),
                 ),
@@ -124,10 +146,73 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
+}
 
-  // Widget buildProfileImage() => CircleAvatar(
+class DownContainer extends StatelessWidget {
+  const DownContainer({super.key});
 
-  //   radius: ,
+  @override
+  Widget build(BuildContext context) {
+    void gotoSettings() {
+      Navigator.pushNamed(context, "/settings");
+    }
 
-  // )
+    final double currentHeight = MediaQuery.sizeOf(context).height;
+
+    final double currentWidth = MediaQuery.sizeOf(context).width;
+
+    return SizedBox(
+      height: Helper.dependOnHeight(661 - 40) * currentHeight,
+      child: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: AppColors.white,
+        ),
+        child: Column(
+          children: [
+            SizedBox(
+                height: Helper.dependOnWidth(104) * currentHeight / 4 + 12),
+            Text(
+              "Efe Can Tepe",
+              style: TextStyle(
+                  color: AppColors.dotBlack,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500),
+            ),
+            SizedBox(
+              height: Helper.dependOnHeight(32) * currentHeight,
+            ),
+            ProfileItemRow(
+                backgroundColor: AppColors.callBlue,
+                iconColor: AppColors.white,
+                mainText: "+90 5432305782",
+                secondaryText: "Mobile Number",
+                icon: Icons.call),
+            ProfileItemRow(
+                backgroundColor: AppColors.mailGreen,
+                iconColor: AppColors.white,
+                mainText: "ulvinomarov@mail.com",
+                secondaryText: "Email",
+                icon: Icons.mail),
+            ProfileItemRow(
+                backgroundColor: AppColors.tarifOrange,
+                iconColor: AppColors.white,
+                mainText: "+Tariffs",
+                secondaryText: null,
+                icon: Icons.receipt),
+            GestureDetector(
+                onTap: gotoSettings,
+                child: ProfileItemRow(
+                    backgroundColor: AppColors.settingsRed,
+                    iconColor: AppColors.white,
+                    mainText: "Settings",
+                    secondaryText: null,
+                    icon: Icons.settings)),
+          ],
+        ),
+      ),
+    );
+  }
 }

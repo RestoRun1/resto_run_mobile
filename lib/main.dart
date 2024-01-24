@@ -8,6 +8,7 @@ import 'package:resto_run_mobile/Pages/Notification.dart';
 import 'package:resto_run_mobile/Pages/OrderTrackingPage.dart';
 import 'package:resto_run_mobile/Pages/PaymentSuccessPage.dart';
 import 'package:resto_run_mobile/Pages/ProfilePage.dart';
+import 'package:resto_run_mobile/Pages/SettingsPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
 import 'Pages/SignIn.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfilePage(),                              //Scaffold(body: SafeArea(child: NotificationPage(),)),
+      home: SettingsPage(),                              //Scaffold(body: SafeArea(child: NotificationPage(),)),
       routes: {
         '/signIn': (context) => SignIn(),
         '/signUp': (context) => SignUp(),
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/paymentSuccess': (context) => PaymentSuccessPage(),
         '/orderTracking': (context) => OrderTrackingPage(),
         '/notification' : (context) => NotificationPage(),
+        '/settings' : (context) => SettingsPage()
       },
     );
 
