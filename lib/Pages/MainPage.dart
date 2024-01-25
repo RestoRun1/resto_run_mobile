@@ -58,9 +58,14 @@ class _MainPageState extends State<MainPage> {
                   const SizedBox(
                     width: 10,
                   ),
-                  const CircleAvatar(
-                      radius: 20,
-                      backgroundImage: AssetImage("assets/efe.png")),
+                  GestureDetector(
+
+                    onTap: () => Navigator.pushNamed(context, '/profilePage'),
+
+                    child: const CircleAvatar(
+                        radius: 20,
+                        backgroundImage: AssetImage("assets/efe.png")),
+                  ),
                 ],
               ),
             ),

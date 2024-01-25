@@ -45,7 +45,7 @@ class SideBar extends StatelessWidget {
               Column(
                 children: [
                   TextButton(
-                      onPressed: () => print("Sidebar Profile"),
+                      onPressed: () => Navigator.pushNamed(context, '/profilePage'),
                       child: const Row(
                         children: [
                           Icon(

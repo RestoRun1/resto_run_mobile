@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SettingsPage(),                              //Scaffold(body: SafeArea(child: NotificationPage(),)),
+      home: MainPage(),                              //Scaffold(body: SafeArea(child: NotificationPage(),)),
       routes: {
         '/signIn': (context) => SignIn(),
         '/signUp': (context) => SignUp(),
@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/paymentSuccess': (context) => PaymentSuccessPage(),
         '/orderTracking': (context) => OrderTrackingPage(),
         '/notification' : (context) => NotificationPage(),
+        '/profilePage' : (context) => ProfilePage(),
         '/settings' : (context) => SettingsPage()
       },
     );
