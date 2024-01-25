@@ -3,6 +3,7 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:resto_run_mobile/Components/RestaurantGridLayout.dart';
 import 'package:resto_run_mobile/Pages/Checkout.dart';
 import 'package:resto_run_mobile/Pages/CreditCardTest.dart';
+import 'package:resto_run_mobile/Pages/FAQ.dart';
 import 'package:resto_run_mobile/Pages/MainPage.dart';
 import 'package:resto_run_mobile/Pages/Notification.dart';
 import 'package:resto_run_mobile/Pages/OrderTrackingPage.dart';
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
         '/notification' : (context) => NotificationPage(),
         '/profilePage' : (context) => ProfilePage(),
         '/settings' : (context) => SettingsPage(),
-        '/scanner' : (context) => Scanner()
+        '/scanner' : (context) => Scanner(),
+        '/faq' : (context) => FAQ()
       },
     );
 

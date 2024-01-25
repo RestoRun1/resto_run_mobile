@@ -136,7 +136,7 @@ class SideBar extends StatelessWidget {
                 ),
 
               TextButton(
-                  onPressed: () => print("FAQ"),
+                  onPressed: () => Navigator.pushNamed(context, "/faq"),
                   child: const Row(
                     children: [
                       Icon(
