@@ -96,7 +96,7 @@ class SideBar extends StatelessWidget {
                         ],
                       )),
                   TextButton(
-                      onPressed: () => print("Sidebar Order Status"),
+                      onPressed: () => Navigator.pushNamed(context, "/orderTracking"),
                       child: const Row(
                         children: [
                           Icon(

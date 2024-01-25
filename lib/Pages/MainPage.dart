@@ -59,9 +59,7 @@ class _MainPageState extends State<MainPage> {
                     width: 10,
                   ),
                   GestureDetector(
-
                     onTap: () => Navigator.pushNamed(context, '/profilePage'),
-
                     child: const CircleAvatar(
                         radius: 20,
                         backgroundImage: AssetImage("assets/efe.png")),
@@ -121,7 +119,9 @@ class _MainPageState extends State<MainPage> {
     void handleTap(index) {
       setState(() => currentIndex = index);
 
-      if (index == 3) {
+      if (index == 2) {
+        Navigator.pushNamed(context, '/scanner');
+      } else if (index == 3) {
         Navigator.pushNamed(context, '/yourCart');
       } else if (index == 4) {
         Navigator.pushNamed(context, '/notification');

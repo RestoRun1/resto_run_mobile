@@ -54,105 +54,124 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
     final currentHeight = MediaQuery.sizeOf(context).height;
     final currentWidth = MediaQuery.sizeOf(context).width;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 34 / 389 * currentWidth ),
-      child: Column(
-      
-        crossAxisAlignment: CrossAxisAlignment.start,
-      
-        children: [
-      
-          SizedBox(height: 116 / 812 * currentHeight ,),
-      
-           const Text("Order Status", style: TextStyle(
-                      
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.textGrey
-                      
-            ),),
-
-
-          SingleChildScrollView(
-            child: Container(
-              height: ((604.3 - 116) / 812) * currentHeight  ,
-              child: ListView(
-
-                shrinkWrap: true,
-                physics: AlwaysScrollableScrollPhysics(),
-
-                children: [
-                        
-                  SizedBox(height: 8 / 812 * currentHeight,),
-
-                  Column(
-                    children: statusLine.map((status) {
-                      return StatusLine(
-                        circleColor: (status['circleColor'] as Color),
-                        lineText: (status['lineText'] as String),
-                        isSelected: (status['isSelected'] as bool),
-                      );
-                    }).toList(),
-                  )
-
-                  
-
-                  // StatusLine(
-                  //   circleColor: AppColors.lightGreen, 
-                  //   lineText: "Your order is accepted",
-                  //   isSelected: false,  
-                  // ),
-                    
-                  // StatusLine(
-                  //   circleColor: AppColors.lightGreen, 
-                  //   lineText: "Your order is accepted",
-                  //   isSelected: false,  
-                  // ),
-                                  
-                  // StatusLine(
-                  //   circleColor: AppColors.lightGreen, 
-                  //   lineText: "Your order is accepted",
-                  //   isSelected: true,  
-                  // ),
-                                  
-                  // StatusLine(
-                  //   circleColor: AppColors.lightGreen, 
-                  //   lineText: "Your order is accepted",
-                  //   isSelected: false,  
-                  // ),
-                ],
-              ),
-            ),
-          ),
-
-          Row(
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 34 / 389 * currentWidth ),
+          child: Column(
+          
+            crossAxisAlignment: CrossAxisAlignment.start,
+          
             children: [
-
+              
               SizedBox(width: 51 / 389 * currentWidth,),
-              SizedBox(
-              
-                width: 209 / 389 * currentWidth ,
-              
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    alignment: Alignment.center,
-                    backgroundColor: MaterialStateProperty.all(AppColors.lightGreen),
-                    foregroundColor: MaterialStateProperty.all(AppColors.white),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)
+
+
+              Container(
+                  decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(9)),
+                  child: BackButton(
+                    color: AppColors.lightGreen,
+                  )),
+          
+              SizedBox(height: 116 / 812 * currentHeight ,),
+          
+               const Text("Order Status", style: TextStyle(
+                          
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textGrey
+                          
+                ),),
+        
+        
+              SingleChildScrollView(
+                child: Container(
+                  height: ((604.3 - 116) / 812) * currentHeight  ,
+                  child: ListView(
+        
+                    shrinkWrap: true,
+                    physics: AlwaysScrollableScrollPhysics(),
+        
+                    children: [
+                            
+                      SizedBox(height: 8 / 812 * currentHeight,),
+        
+                      Column(
+                        children: statusLine.map((status) {
+                          return StatusLine(
+                            circleColor: (status['circleColor'] as Color),
+                            lineText: (status['lineText'] as String),
+                            isSelected: (status['isSelected'] as bool),
+                          );
+                        }).toList(),
                       )
-                    )
-                
+        
+                      
+        
+                      // StatusLine(
+                      //   circleColor: AppColors.lightGreen, 
+                      //   lineText: "Your order is accepted",
+                      //   isSelected: false,  
+                      // ),
+                        
+                      // StatusLine(
+                      //   circleColor: AppColors.lightGreen, 
+                      //   lineText: "Your order is accepted",
+                      //   isSelected: false,  
+                      // ),
+                                      
+                      // StatusLine(
+                      //   circleColor: AppColors.lightGreen, 
+                      //   lineText: "Your order is accepted",
+                      //   isSelected: true,  
+                      // ),
+                                      
+                      // StatusLine(
+                      //   circleColor: AppColors.lightGreen, 
+                      //   lineText: "Your order is accepted",
+                      //   isSelected: false,  
+                      // ),
+                    ],
                   ),
-                  onPressed: () => print("Cancel Order"), 
-                  child: Text("Cancel Order")
                 ),
               ),
-            ],
-          )
+        
+              Row(
+                children: [
+        
+                  SizedBox(width: 51 / 389 * currentWidth,),
+                  SizedBox(
+                  
+                    width: 209 / 389 * currentWidth ,
+                  
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        alignment: Alignment.center,
+                        backgroundColor: MaterialStateProperty.all(AppColors.lightGreen),
+                        foregroundColor: MaterialStateProperty.all(AppColors.white),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)
+                          )
+                        )
+                    
+                      ),
+                      onPressed: () => print("Cancel Order"), 
+                      child: Text("Cancel Order")
+                    ),
+                  ),
+                
+                  SizedBox(width: 51 / 389 * currentWidth,),
 
-        ],
+
+                ],
+              )
+        
+            ],
+          ),
+        ),
       ),
     );
   }

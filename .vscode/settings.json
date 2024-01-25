@@ -1,3 +1,6 @@
 {
-    "cmake.sourceDirectory": "C:/efe/Graduation Project/Mobile/resto_run_mobile/linux/flutter"
+    "cmake.sourceDirectory": "C:/efe/Graduation Project/Mobile/resto_run_mobile/linux/flutter",
+    "java.project.sourcePaths": [
+        "android"
+    ]
 }

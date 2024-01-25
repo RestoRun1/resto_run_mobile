@@ -14,7 +14,7 @@ class ProfilePage extends StatelessWidget {
         body: SafeArea(
       child: Stack(
         children: [
-          upContainer(),
+          upContainer(currentWidth, currentHeight),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -55,8 +55,31 @@ class ProfilePage extends StatelessWidget {
     ));
   }
 
-  Widget upContainer() {
-    return Container(color: AppColors.darkGreen);
+  Widget upContainer(double currentWidth, double currentHeight) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: AppColors.darkGreen,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12,24,0,0),
+            child: SizedBox(
+              height: Helper.dependOnWidth(44) * currentWidth,
+              width: Helper.dependOnWidth(44) * currentWidth,
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(9)),
+                  child: BackButton(
+                    color: AppColors.lightGreen,
+                  )),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Text createName() {

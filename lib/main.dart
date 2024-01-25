@@ -8,6 +8,7 @@ import 'package:resto_run_mobile/Pages/Notification.dart';
 import 'package:resto_run_mobile/Pages/OrderTrackingPage.dart';
 import 'package:resto_run_mobile/Pages/PaymentSuccessPage.dart';
 import 'package:resto_run_mobile/Pages/ProfilePage.dart';
+import 'package:resto_run_mobile/Pages/Scanner.dart';
 import 'package:resto_run_mobile/Pages/SettingsPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         '/orderTracking': (context) => OrderTrackingPage(),
         '/notification' : (context) => NotificationPage(),
         '/profilePage' : (context) => ProfilePage(),
-        '/settings' : (context) => SettingsPage()
+        '/settings' : (context) => SettingsPage(),
+        '/scanner' : (context) => Scanner()
       },
     );
 

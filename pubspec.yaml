@@ -39,7 +39,8 @@ dependencies:
   logger: ^2.0.2+1
   flutter_credit_card: ^4.0.1
   flutter_svg: ^0.22.0 # Check for the latest version on pub.dev
-
+  flutter_barcode_scanner: ^2.0.0
+  simple_barcode_scanner: ^0.0.8
 
 
 dev_dependencies:
