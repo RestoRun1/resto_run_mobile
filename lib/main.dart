@@ -5,6 +5,7 @@ import 'package:resto_run_mobile/Pages/Checkout.dart';
 import 'package:resto_run_mobile/Pages/CreditCardTest.dart';
 import 'package:resto_run_mobile/Pages/FAQ.dart';
 import 'package:resto_run_mobile/Pages/MainPage.dart';
+import 'package:resto_run_mobile/Pages/MapPage.dart';
 import 'package:resto_run_mobile/Pages/Notification.dart';
 import 'package:resto_run_mobile/Pages/OrderTrackingPage.dart';
 import 'package:resto_run_mobile/Pages/PaymentSuccessPage.dart';
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
         '/profilePage' : (context) => ProfilePage(),
         '/settings' : (context) => SettingsPage(),
         '/scanner' : (context) => Scanner(),
-        '/faq' : (context) => FAQ()
+        '/faq' : (context) => FAQ(),
+        '/map' : (context) => MapPage()
       },
     );
 

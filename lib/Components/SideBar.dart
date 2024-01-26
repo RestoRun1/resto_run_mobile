@@ -62,7 +62,7 @@ class SideBar extends StatelessWidget {
                         ],
                       )),
                   TextButton(
-                      onPressed: () => print("SideBar Map"),
+                      onPressed: () => Navigator.pushNamed(context, '/map'),
                       child: const Row(
                         children: [
                           Icon(

@@ -44,29 +44,6 @@ class _Checkout extends State<Checkout> {
 
     return Scaffold(
 
-      appBar: AppBar(
-        leading: SizedBox(
-          width: Helper.dependOnWidth(45) * currentWidth  ,
-
-          child: Container(
-
-            decoration: const BoxDecoration(
-
-              color: AppColors.backgroundLightWhite
-
-            ),
-
-            child: const BackButton(
-              color: AppColors.darkBlueBackButtn  
-              
-            ),
-          ),
-
-        ),
-
-      ),
-
-
       body: SafeArea(
         child: CustomScrollView(
           shrinkWrap: false,
