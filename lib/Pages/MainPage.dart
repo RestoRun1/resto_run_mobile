@@ -26,10 +26,6 @@ class _MainPageState extends State<MainPage> {
     final double currentWidth = MediaQuery.sizeOf(context).width;
     final double currentHeight = MediaQuery.sizeOf(context).height;
 
-    void openBottom() {
-      print("JKASHDSAKJD");
-    }
-
     return Scaffold(
       key: _scaffoldKey,
       appBar: PreferredSize(
@@ -111,20 +107,32 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
       ),
-      bottomNavigationBar: navBar(openBottom),
+      bottomNavigationBar: navBar(),
     );
   }
 
-  BottomNavigationBar navBar(Function openBottom) {
+  BottomNavigationBar navBar() {
     void handleTap(index) {
       setState(() => currentIndex = index);
 
       if (index == 2) {
-        Navigator.pushNamed(context, '/scanner');
+        Navigator.pushNamed(context, '/scanner').then((value) {
+          setState(() {
+            currentIndex = 0;
+          });
+        });
       } else if (index == 3) {
-        Navigator.pushNamed(context, '/yourCart');
+        Navigator.pushNamed(context, '/yourCart').then((value) => {
+              setState(() {
+                currentIndex = 0;
+              })
+            });
       } else if (index == 4) {
-        Navigator.pushNamed(context, '/notification');
+        Navigator.pushNamed(context, '/notification').then((value) {
+          setState(() {
+            currentIndex = 0;
+          });
+        });
       }
     }
 
