@@ -15,9 +15,10 @@ import 'package:resto_run_mobile/Pages/SettingsPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
 import 'Pages/SignIn.dart';
-import 'Pages/Reservation.dart';
+import 'Pages/MakeReservation.dart';
 import 'Pages/ReviewInformationPage.dart';
 import 'Pages/Notification.dart';
+import 'Pages/MyReservations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,12 +32,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),                              //Scaffold(body: SafeArea(child: NotificationPage(),)),
+      home: MyReservations(),                              //Scaffold(body: SafeArea(child: NotificationPage(),)),
       routes: {
         '/signIn': (context) => SignIn(),
         '/signUp': (context) => SignUp(),
         '/mainPage': (context) => MainPage(),
-        '/reservation': (context) => Reservation(),
+        '/reservation': (context) => MakeReservation(),
         '/reservationReview': (context) => ReviewInformationPage(),
         '/GridLayoutTest': (context) => RestaurantGridLayout(),
         '/yourCart': (context) => YourCart(),
@@ -48,7 +49,8 @@ class MyApp extends StatelessWidget {
         '/settings' : (context) => SettingsPage(),
         '/scanner' : (context) => Scanner(),
         '/faq' : (context) => FAQ(),
-        '/map' : (context) => MapPage()
+        '/map' : (context) => MapPage(),
+        '/myReservations': (context) => MyReservations()
       },
     );
 

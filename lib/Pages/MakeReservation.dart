@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'ReviewInformationPage.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
 
-class Reservation extends StatefulWidget {
+class MakeReservation extends StatefulWidget {
   @override
   _ReservationState createState() => _ReservationState();
 }
 
-class _ReservationState extends State<Reservation> {
+class _ReservationState extends State<MakeReservation> {
   int currentIndex = 0;
   int _numberOfAdults = 2;
   DateTime _selectedDate = DateTime.now();
