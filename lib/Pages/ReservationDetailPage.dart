@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:resto_run_mobile/Models/reservation.dart'; // Update this with the correct import path
+import 'package:resto_run_mobile/Widgets/ReservedWidget.dart';
+import 'package:resto_run_mobile/Widgets/PastWidget.dart';
+import 'package:resto_run_mobile/Widgets/CancelledWidget.dart';
 
 class ReservationDetailPage extends StatelessWidget {
   final Reservation reservation;
@@ -10,21 +13,31 @@ class ReservationDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget content;
+    switch (reservation.status) {
+      case ReservationStatus.accepted:
+        content = ReservedWidget(reservation: reservation);
+        break;
+      case ReservationStatus.cancelled:
+        content = CancelledWidget(reservation: reservation);
+        break;
+      case ReservationStatus.pending:
+      // For pending, you mentioned no implementation is needed
+      // But if you want to add something in the future, this is where it would go
+        content = Container(); // Placeholder for now
+        break;
+      default:
+      // Assuming any past reservation is neither accepted nor cancelled
+        content = PastWidget(reservation: reservation);
+        break;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Reservation Detail'),
       ),
-      body: Column(
-        children: <Widget>[
-          // Display different information based on the reservation status
-          if (reservation.status == ReservationStatus.accepted) ...[
-            // Widgets for accepted reservation
-          ] else if (reservation.status == ReservationStatus.cancelled) ...[
-            // Widgets for cancelled reservation
-          ] else if (reservation.status == ReservationStatus.pending) ...[
-            // Widgets for pending reservation
-          ],
-        ],
+      body: SingleChildScrollView(
+        child: content,
       ),
     );
   }
