@@ -1,14 +1,16 @@
+enum ReservationStatus { accepted, cancelled, pending, past }
+
 class Reservation {
   final String location;
   final String tableSize;
   final DateTime dateTime;
-  final bool isCancelled;
+  final ReservationStatus status;
 
   Reservation({
     required this.location,
     required this.tableSize,
     required this.dateTime,
-    this.isCancelled = false,
+    this.status = ReservationStatus.pending,
   });
 
   bool get isPast => dateTime.isBefore(DateTime.now());
