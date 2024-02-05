@@ -45,18 +45,6 @@ class _YourCart extends State<YourCart> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.white,
-        leading: SizedBox(
-          width: Helper.dependOnWidth(45) * currentWidth,
-          child: Container(
-            
-            margin: EdgeInsets.all(20),
-            child: BackButtonComponent()
-            
-            ),
-        ),
-      ),
       body: SafeArea(
         child: Sizer(
           builder: (context, orientation, deviceType) => SafeArea(
@@ -68,6 +56,9 @@ class _YourCart extends State<YourCart> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
+                      BackButtonComponent(),
+
                       SizedBox(
                         height: 3.h,
                       ),
