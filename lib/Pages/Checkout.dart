@@ -83,7 +83,7 @@ class _Checkout extends State<Checkout> {
             index: selection,
             children: [
               CardInputSections(), // Index 0
-              aCard()
+              Cards()
             ],
           ),
           Center(
