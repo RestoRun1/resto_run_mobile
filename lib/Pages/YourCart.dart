@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
+import 'package:resto_run_mobile/Components/BackButtonComponent.dart';
 import 'package:resto_run_mobile/helper.dart';
 import 'package:resto_run_mobile/main.dart';
 import 'package:sizer/sizer.dart';
@@ -49,10 +50,11 @@ class _YourCart extends State<YourCart> {
         leading: SizedBox(
           width: Helper.dependOnWidth(45) * currentWidth,
           child: Container(
-            decoration:
-                const BoxDecoration(color: AppColors.backgroundLightWhite),
-            child: BackButton(color: AppColors.lightGreen),
-          ),
+            
+            margin: EdgeInsets.all(20),
+            child: BackButtonComponent()
+            
+            ),
         ),
       ),
       body: SafeArea(
