@@ -64,7 +64,8 @@ class Cards extends StatelessWidget {
         }),
         options: CarouselOptions(
           height: 200,
-          autoPlay: true,
+          autoPlay: false,
+          enableInfiniteScroll: true,
           autoPlayInterval: Duration(seconds: 3),
           autoPlayAnimationDuration: Duration(milliseconds: 800),
           autoPlayCurve: Curves.fastOutSlowIn,
