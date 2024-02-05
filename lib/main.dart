@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),                              //Scaffold(body: SafeArea(child: NotificationPage(),)),
+      home: Checkout(),                              //Scaffold(body: SafeArea(child: NotificationPage(),)),
       routes: {
         '/signIn': (context) => SignIn(),
         '/signUp': (context) => SignUp(),
