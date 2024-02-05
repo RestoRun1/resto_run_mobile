@@ -29,7 +29,7 @@ class SignUp extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column( mainAxisAlignment: MainAxisAlignment.center, children: [
                       
-                      SizedBox(height: 50,),
+                      const SizedBox(height: 50,),
                       
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 25),
