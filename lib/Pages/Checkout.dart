@@ -60,11 +60,8 @@ class _Checkout extends State<Checkout> {
   Widget mainBody(double currentHeight) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      
       child: Column(
-
         crossAxisAlignment: CrossAxisAlignment.start,
-
         children: [
           BackButtonComponent(),
           Expanded(
@@ -204,7 +201,6 @@ class CardInputSections extends StatelessWidget {
   Widget build(BuildContext context) {
     final double currentHeight = MediaQuery.sizeOf(context).height;
     final double currentWidth = MediaQuery.sizeOf(context).width;
-
 
     return Column(
       children: [
