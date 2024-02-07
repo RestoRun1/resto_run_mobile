@@ -89,18 +89,24 @@ class SignIn extends StatelessWidget {
                 height: 10,
               ),
               
-              const SignInButton(text: "Sign In"),
+
               const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+
+              Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25),
-                    child: EndPageTextButton(
-                      description: "Don't Have Account ?",
-                      buttonText: "Sign Up",
-                      touchButton: goSignUp,
-                    ),
+                  const SignInButton(text: "Sign In"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: EndPageTextButton(
+                          description: "Don't Have Account ?",
+                          buttonText: "Sign Up",
+                          touchButton: goSignUp,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
