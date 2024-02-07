@@ -31,24 +31,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),                              //Scaffold(body: SafeArea(child: NotificationPage(),)),
+      home: OrderTrackingPage(),                              //Scaffold(body: SafeArea(child: NotificationPage(),)),
       routes: {
         '/signIn': (context) => SignIn(),
         '/signUp': (context) => SignUp(),
-        '/mainPage': (context) => MainPage(),
+        '/mainPage': (context) => const MainPage(),
         '/reservation': (context) => Reservation(),
         '/reservationReview': (context) => ReviewInformationPage(),
-        '/GridLayoutTest': (context) => RestaurantGridLayout(),
-        '/yourCart': (context) => YourCart(),
-        '/checkout': (context) => Checkout(),
-        '/paymentSuccess': (context) => PaymentSuccessPage(),
-        '/orderTracking': (context) => OrderTrackingPage(),
-        '/notification' : (context) => NotificationPage(),
-        '/profilePage' : (context) => ProfilePage(),
-        '/settings' : (context) => SettingsPage(),
+        '/GridLayoutTest': (context) => const RestaurantGridLayout(),
+        '/yourCart': (context) => const YourCart(),
+        '/checkout': (context) => const Checkout(),
+        '/paymentSuccess': (context) => const PaymentSuccessPage(),
+        '/orderTracking': (context) => const OrderTrackingPage(),
+        '/notification' : (context) => const NotificationPage(),
+        '/profilePage' : (context) => const ProfilePage(),
+        '/settings' : (context) => const SettingsPage(),
         '/scanner' : (context) => Scanner(),
         '/faq' : (context) => FAQ(),
-        '/map' : (context) => MapPage()
+        '/map' : (context) => const MapPage()
       },
     );
 
