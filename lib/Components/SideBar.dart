@@ -156,7 +156,7 @@ class SideBar extends StatelessWidget {
 
 
               TextButton(
-                  onPressed: () => print("Log Out"),
+                  onPressed: () => Navigator.pushNamed(context, '/signIn'),
                   child: const Row(
                     children: [
                       Icon(

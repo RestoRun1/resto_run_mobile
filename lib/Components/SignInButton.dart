@@ -8,7 +8,6 @@ class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       width: double.infinity,
       child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -17,9 +16,8 @@ class SignInButton extends StatelessWidget {
               backgroundColor:  MaterialStateProperty.all<Color>(Color.fromRGBO(142, 176, 148, 1))
               
             ),
-
             onPressed: () {
-              print("Elevated Button Pressed");
+              Navigator.pushNamed(context, '/mainPage');
             },
             child:  Text(
               text,
