@@ -25,12 +25,9 @@ class AppColors {
 
   // Profile Page Colors It is not necessary
   static const Color callBlue = Color.fromRGBO(66, 170, 255, 1);
-  static const Color mailGreen = Color.fromRGBO(
-      73, 219, 200, 1); /* Assuming an alpha value of 1 for full opacity */
+  static const Color mailGreen = Color.fromRGBO(73, 219, 200, 1); /* Assuming an alpha value of 1 for full opacity */
   static const Color tarifOrange = Color.fromRGBO(250, 160, 0, 1);
   static const Color settingsRed = Color.fromRGBO(252, 115, 57, 1);
-
   static const Color notificationYellow = Color.fromRGBO(255, 170, 0, 1);
-
   static const Color notificationPurple = Color.fromRGBO(175, 150, 251, 1);
 }

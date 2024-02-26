@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
+import 'package:resto_run_mobile/Components/BackButtonComponent.dart';
 import 'package:resto_run_mobile/Pages/CreditCardTest.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
 import 'package:resto_run_mobile/helper.dart';
@@ -38,19 +39,17 @@ class _Checkout extends State<Checkout> {
 
   @override
   Widget build(BuildContext context) {
-
     final double currentWidth = MediaQuery.sizeOf(context).width;
     final double currentHeight = MediaQuery.sizeOf(context).height;
 
     return Scaffold(
-
       body: SafeArea(
         child: CustomScrollView(
           shrinkWrap: false,
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
-              child: MainBody(),
+              child: mainBody(currentHeight),
             )
           ],
         ),
@@ -58,34 +57,56 @@ class _Checkout extends State<Checkout> {
     );
   }
 
-  Widget MainBody() {
+  Widget mainBody(double currentHeight) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          BackButtonComponent(),
           Expanded(
             child: Container(),
           ),
           TitleRow(),
+          SizedBox(
+            height: 20,
+          ),
           CardButtons(
             switchMyCards: swithcMyCards,
             switchNewCards: switchNewCards,
           ),
           const SizedBox(
-            height: 10,
-            width: double.infinity,
+            height: 20,
           ),
           IndexedStack(
             alignment: Alignment.topCenter,
             index: selection,
             children: [
               CardInputSections(), // Index 0
-              aCard()
+              Cards()
             ],
           ),
-          Text("We will send you an order details to your"),
-          Text("email after the succesfull payment"),
-          PayButton(),
+          Center(
+            child: const Column(
+              children: [
+                Text(
+                  "We will send you an order details to your",
+                  style: TextStyle(color: AppColors.textGrey, fontSize: 12),
+                ),
+                Text(
+                  "email after the succesfull payment",
+                  style: TextStyle(color: AppColors.textGrey, fontSize: 12),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: Helper.dependOnHeight(22) * currentHeight,
+          ),
+          PayButton(currentHeight),
+          SizedBox(
+            height: Helper.dependOnHeight(20) * currentHeight,
+          )
         ],
       ),
     );
@@ -141,21 +162,27 @@ class _Checkout extends State<Checkout> {
     ));
   }
 
-  Widget PayButton() {
-    return Flexible(
-      flex: 1,
+  Widget PayButton(double currentHeight) {
+    return Container(
+      height: Helper.dependOnHeight(66) * currentHeight,
       child: ElevatedButton(
           style: ButtonStyle(
             alignment: Alignment.center,
             backgroundColor: MaterialStateProperty.all(AppColors.lightGreen),
             foregroundColor: MaterialStateProperty.all(AppColors.white),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                    16.0), // Adjust the value for less rounded corners
+              ),
+            ),
           ),
           onPressed: payOrder,
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.lock),
-              const SizedBox(
+              SizedBox(
                 width: 10,
               ),
               Text("Pay for the order")
@@ -172,6 +199,9 @@ class CardInputSections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double currentHeight = MediaQuery.sizeOf(context).height;
+    final double currentWidth = MediaQuery.sizeOf(context).width;
+
     return Column(
       children: [
         Row(
@@ -187,6 +217,7 @@ class CardInputSections extends StatelessWidget {
         ),
         Container(
           width: double.infinity,
+          height: Helper.dependOnHeight(56) * currentHeight,
           child: TextField(
             obscureText: true,
             decoration: InputDecoration(
@@ -213,6 +244,7 @@ class CardInputSections extends StatelessWidget {
           ],
         ),
         Container(
+          height: Helper.dependOnHeight(56) * currentHeight,
           child: TextField(
             obscureText: true,
             decoration: InputDecoration(
@@ -239,14 +271,17 @@ class CardInputSections extends StatelessWidget {
                           fontSize: 16,
                           fontWeight: FontWeight.bold)),
                   // Add some spacing between title and TextField
-                  TextField(
-                    // Your first TextField properties go here
-                    decoration: InputDecoration(
-                      hintText: "MM / YYYY",
-                      filled: true,
-                      fillColor: AppColors.backgroundPurple,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16)),
+                  Container(
+                    height: Helper.dependOnHeight(56) * currentHeight,
+                    child: TextField(
+                      // Your first TextField properties go here
+                      decoration: InputDecoration(
+                        hintText: "MM / YYYY",
+                        filled: true,
+                        fillColor: AppColors.backgroundPurple,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                      ),
                     ),
                   ),
                 ],
@@ -262,14 +297,17 @@ class CardInputSections extends StatelessWidget {
                           color: AppColors.textGrey,
                           fontSize: 16,
                           fontWeight: FontWeight.bold)),
-                  TextField(
-                    // Your second TextField properties go here
-                    decoration: InputDecoration(
-                      hintText: "_ _ _ ",
-                      filled: true,
-                      fillColor: AppColors.backgroundPurple,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16)),
+                  Container(
+                    height: Helper.dependOnHeight(56) * currentHeight,
+                    child: TextField(
+                      // Your second TextField properties go here
+                      decoration: InputDecoration(
+                        hintText: "_ _ _ ",
+                        filled: true,
+                        fillColor: AppColors.backgroundPurple,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                      ),
                     ),
                   ),
                 ],
@@ -326,10 +364,7 @@ class _TitleRowState extends State<TitleRow> {
             ),
             Text(
               "Including GST (18%)",
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.textGrey),
+              style: TextStyle(fontSize: 14, color: AppColors.textGrey),
             ),
           ],
         )
@@ -376,10 +411,14 @@ class _CardButtonsState extends State<CardButtons> {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Row(
-        children: [
-          Expanded(
+    final double currentHeight = MediaQuery.sizeOf(context).height;
+    final double currentWidth = MediaQuery.sizeOf(context).width;
+
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            height: Helper.dependOnHeight(69) * currentHeight,
             child: ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
@@ -409,7 +448,10 @@ class _CardButtonsState extends State<CardButtons> {
                   ],
                 )),
           ),
-          Expanded(
+        ),
+        Expanded(
+          child: Container(
+            height: Helper.dependOnHeight(69) * currentHeight,
             child: ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
@@ -429,8 +471,8 @@ class _CardButtonsState extends State<CardButtons> {
                           : AppColors.textGrey),
                 )),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
+import 'package:resto_run_mobile/Components/BackButtonComponent.dart';
 import 'package:resto_run_mobile/helper.dart';
 import 'package:resto_run_mobile/main.dart';
 import 'package:sizer/sizer.dart';
 import 'package:logger/logger.dart';
 
 List<Map<String, String>> shopItems = [
+  {
+    'brand': "Milk",
+    'description': "It is a milk",
+    'price': "165",
+    'image': "assets/bottle_milk.png"
+  },
   {
     'brand': "Milk",
     'description': "It is a milk",
@@ -38,17 +45,6 @@ class _YourCart extends State<YourCart> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.white,
-        leading: SizedBox(
-          width: Helper.dependOnWidth(45) * currentWidth,
-          child: Container(
-            decoration:
-                const BoxDecoration(color: AppColors.backgroundLightWhite),
-            child: BackButton(color: AppColors.lightGreen),
-          ),
-        ),
-      ),
       body: SafeArea(
         child: Sizer(
           builder: (context, orientation, deviceType) => SafeArea(
@@ -60,6 +56,9 @@ class _YourCart extends State<YourCart> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
+                      BackButtonComponent(),
+
                       SizedBox(
                         height: 3.h,
                       ),
@@ -71,7 +70,7 @@ class _YourCart extends State<YourCart> {
                             fontWeight: FontWeight.w700),
                       ),
                       SizedBox(
-                        height: 1.5.h,
+                        height: Helper.dependOnHeight(41) * currentHeight,
                       ),
 
                       Flexible(
@@ -95,7 +94,7 @@ class _YourCart extends State<YourCart> {
                         height: 3.h,
                       ),
 
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
@@ -119,13 +118,16 @@ class _YourCart extends State<YourCart> {
                         height: 3.h,
                       ),
 
-                      AspectRatio(
-                        aspectRatio: 335 / 62,
+                      Container(
+                        width: double.infinity,
+                        height: Helper.dependOnHeight(85) * currentHeight,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.lightGreen),
+                              backgroundColor: AppColors.lightGreen,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16))),
                           onPressed: handleCheckout,
-                          child: Text(
+                          child: const Text(
                             "Proceed to checkout",
                             style: TextStyle(color: AppColors.white),
                           ),
@@ -155,12 +157,16 @@ class ShoppingCartItem extends StatefulWidget {
 class _ShoppingCartItem extends State<ShoppingCartItem> {
   @override
   Widget build(BuildContext context) {
+    final double currentHeight = MediaQuery.sizeOf(context).height;
+    final double currentWitdh = MediaQuery.sizeOf(context).width;
+
     return Container(
+      height: Helper.dependOnHeight(100) * currentHeight,
       decoration: BoxDecoration(
           color: AppColors.productBackColor,
           borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
         child: Row(
           children: [
             Container(
@@ -185,39 +191,47 @@ class _ShoppingCartItem extends State<ShoppingCartItem> {
                   Text(widget.shopItem["description"]!,
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.shopItem['price']!,
-                        style: TextStyle(
-                            color: AppColors.lightGreen,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: AppColors.white),
-                        child: Row(
-                          children: [
-                            IconButton(
-                                onPressed: () => print("Minus Is Clicked"),
-                                icon: Icon(
-                                  Icons.remove,
-                                  color: AppColors.lightGreen,
-                                )),
-                            Text(
-                              "1",
-                            ),
-                            IconButton(
-                                onPressed: () => print("Plus Is Clicked"),
-                                icon: Icon(Icons.add,
-                                    color: AppColors.lightGreen)),
-                          ],
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.shopItem['price']!,
+                          style: TextStyle(
+                              color: AppColors.lightGreen,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
                         ),
-                      )
-                    ],
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: AppColors.white,
+
+                          ),
+                          
+                          child: Row(
+                          
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                          
+                            children: [
+                              IconButton(
+                                  onPressed: () => print("Minus Is Clicked"),
+                                  icon: Icon(
+                                    Icons.remove,
+                                    color: AppColors.lightGreen,
+                                  )),
+                              Text(
+                                "1",
+                              ),
+                              IconButton(
+                                  onPressed: () => print("Plus Is Clicked"),
+                                  icon: Icon(Icons.add,
+                                      color: AppColors.lightGreen)),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
