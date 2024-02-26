@@ -10,7 +10,7 @@ import 'package:resto_run_mobile/Pages/PaymentSuccessPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
 import 'package:resto_run_mobile/Pages/SignIn.dart';
-import 'package:resto_run_mobile/Pages/Reservation.dart';
+import 'package:resto_run_mobile/Pages/MakeReservation.dart';
 import 'package:resto_run_mobile/Pages/ReviewInformationPage.dart';
 import 'package:resto_run_mobile/Pages/Notification.dart';
 
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/signIn': (context) => SignIn(),
         '/signUp': (context) => SignUp(),
         '/mainPage': (context) => MainPage(),
-        '/reservation': (context) => Reservation(),
+        '/reservation': (context) => MakeReservation(),
         '/reservationReview': (context) => ReviewInformationPage(),
         '/GridLayoutTest': (context) => RestaurantGridLayout(),
         '/yourCart': (context) => YourCart(),

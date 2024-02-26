@@ -15,9 +15,10 @@ import 'package:resto_run_mobile/Pages/SettingsPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
 import 'Pages/SignIn.dart';
-import 'Pages/Reservation.dart';
+import 'Pages/MakeReservation.dart';
 import 'Pages/ReviewInformationPage.dart';
 import 'Pages/Notification.dart';
+import 'Pages/MyReservations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/signIn': (context) => SignIn(),
         '/signUp': (context) => SignUp(),
         '/mainPage': (context) => const MainPage(),
-        '/reservation': (context) => Reservation(),
+        '/reservation': (context) => MakeReservation(),
         '/reservationReview': (context) => ReviewInformationPage(),
         '/GridLayoutTest': (context) => const RestaurantGridLayout(),
         '/yourCart': (context) => const YourCart(),
@@ -48,7 +49,8 @@ class MyApp extends StatelessWidget {
         '/settings' : (context) => const SettingsPage(),
         '/scanner' : (context) => Scanner(),
         '/faq' : (context) => FAQ(),
-        '/map' : (context) => const MapPage()
+        '/map' : (context) => const MapPage(),
+        '/myReservations': (context) => MyReservations()
       },
     );
 
