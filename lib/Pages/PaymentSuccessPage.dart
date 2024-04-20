@@ -36,7 +36,7 @@ class PaymentSuccessPage extends StatelessWidget {
                   SizedBox(
                     width: 115 / 389 * currentWidth,
                   ),
-                  Text(
+                  const Text(
                     "Payment Success",
                     style: TextStyle(
                         fontSize: 18,
@@ -51,7 +51,7 @@ class PaymentSuccessPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.fromLTRB(
                     56 / 389 * currentWidth, 0, 70 / 389 * currentWidth, 0),
-                child: Text(
+                child: const Text(
                   "We Will send order details and invoice in your registered email",
                   softWrap: true,
                   textAlign: TextAlign.center,
