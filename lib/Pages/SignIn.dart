@@ -1,11 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:resto_run_mobile/Color/AppColors.dart';
 import 'package:resto_run_mobile/Components/EndPageTextButton.dart';
 import 'package:resto_run_mobile/Components/MyTextField.dart';
 import 'package:resto_run_mobile/Components/PasswordTextField.dart';
 import 'package:resto_run_mobile/Components/SignInButton.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
+import 'package:resto_run_mobile/backend_url.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+
+import 'package:http/http.dart' as http;
+import 'package:resto_run_mobile/secure_storage.dart';
+import 'dart:convert'; // Import the dart:convert library
+
+
 
 class SignIn extends StatelessWidget {
+
+  Future<void> _handleLogin(BuildContext context) async{
+
+    String username = usernameController.text;
+    String password = passwordController.text;
+
+    String loginUrl = BackendUrl.loginUrl;
+
+
+    try{
+
+      final response = await http.get(
+        Uri.parse("$loginUrl?username=$username&password=$password"),
+      );
+
+      if(response.statusCode != 200){
+
+        await Fluttertoast.showToast(
+          msg: "Wrong Credentials",
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: AppColors.lightGreen,
+          textColor: AppColors.white, 
+        );
+
+        return;
+      }
+
+      else{
+        SecureStorage storage = SecureStorage();
+        Map<String, dynamic> user = json.decode(response.body);
+
+        debugPrint(user.toString());
+
+        var userIdType = user["userId"].runtimeType;
+
+        debugPrint(userIdType.toString());
+
+        await storage.saveData("email", user['email']);
+        await storage.saveData("userId", "${user['userId']}");
+        await storage.saveData("username", user['username']);
+
+        // I dont know why this code is necessity !!  
+        if (!context.mounted) return;
+
+        await Fluttertoast.showToast(
+          msg: "Welcome to RestoRun",
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: AppColors.lightGreen,
+          textColor: AppColors.white, 
+        );
+
+        Navigator.pushReplacementNamed(context, '/mainPage');
+      
+      }
+
+
+    } catch(e){
+      debugPrint(e.toString());
+    }   
+
+  }
+
+
   SignIn({super.key});
 
   final usernameController = TextEditingController();
@@ -94,7 +167,27 @@ class SignIn extends StatelessWidget {
 
               Column(
                 children: [
-                  const SignInButton(text: "Sign In"),
+                    Container(
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor:  MaterialStateProperty.all<Color>(Color.fromRGBO(142, 176, 148, 1))
+                            
+                          ),
+                          onPressed: () {
+                            _handleLogin(context);
+                          },
+                          child: const Text(
+                            "Sign In",
+                            style: TextStyle(
+                              color: Colors.white
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
