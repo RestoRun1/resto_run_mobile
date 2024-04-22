@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
+import 'package:resto_run_mobile/secure_storage.dart';
+import 'package:resto_run_mobile/user.dart';
 
 class SideBar extends StatelessWidget {
+
+  SecureStorage storage = SecureStorage();
+  User user = User();
+
   @override
   Widget build(BuildContext context) {
     String getToday() {
@@ -17,7 +23,7 @@ class SideBar extends StatelessWidget {
       backgroundColor: AppColors.lightGreen,
       child: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -28,9 +34,9 @@ class SideBar extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              const Text(
-                "Efe Can Tepe",
-                style: TextStyle(
+              Text(
+                "Welcome ${user.username}",
+                style: const TextStyle(
                     fontSize: 20,
                     color: AppColors.white,
                     fontWeight: FontWeight.bold),
@@ -114,7 +120,7 @@ class SideBar extends StatelessWidget {
                       )),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
 
               TextButton(
                   onPressed: () => print("Contact Us"),
@@ -174,9 +180,9 @@ class SideBar extends StatelessWidget {
                   )
                 ),
 
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
                 
-              Text(
+              const Text(
                 "Version 1.0",
                 style: TextStyle(
                     color: AppColors.white,
@@ -185,7 +191,7 @@ class SideBar extends StatelessWidget {
               ),
               Text(
                 getToday(),
-                style: TextStyle(
+                style: const TextStyle(
                     color: AppColors.white,
                     fontSize: 14,
                     fontWeight: FontWeight.bold),

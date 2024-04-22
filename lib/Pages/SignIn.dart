@@ -11,7 +11,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:resto_run_mobile/secure_storage.dart';
-import 'dart:convert'; // Import the dart:convert library
+import 'dart:convert';
+
+import 'package:resto_run_mobile/user.dart'; // Import the dart:convert library
 
 
 
@@ -52,6 +54,11 @@ class SignIn extends StatelessWidget {
         var userIdType = user["userId"].runtimeType;
 
         debugPrint(userIdType.toString());
+
+        User singletonUser = User();
+        singletonUser.setEmail(user['email']);
+        singletonUser.setUserId("${user['userId']}");
+        singletonUser.setUsername(user['username']);
 
         await storage.saveData("email", user['email']);
         await storage.saveData("userId", "${user['userId']}");
