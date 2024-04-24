@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
 import 'package:resto_run_mobile/helper.dart';
+import 'package:resto_run_mobile/user.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -174,6 +175,8 @@ class ProfileItemRow extends StatelessWidget {
 class DownContainer extends StatelessWidget {
   const DownContainer({super.key});
 
+  
+
   @override
   Widget build(BuildContext context) {
     void gotoSettings() {
@@ -198,8 +201,8 @@ class DownContainer extends StatelessWidget {
             SizedBox(
                 height: Helper.dependOnWidth(104) * currentHeight / 4 + 12),
             Text(
-              "Efe Can Tepe",
-              style: TextStyle(
+              User().username,
+              style: const TextStyle(
                   color: AppColors.dotBlack,
                   fontSize: 20,
                   fontWeight: FontWeight.w500),

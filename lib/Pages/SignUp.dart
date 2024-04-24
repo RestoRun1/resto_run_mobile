@@ -17,9 +17,11 @@ final passwordController = TextEditingController();
 final confirmPasswordController = TextEditingController();
 final nameController = TextEditingController();
 final emailController = TextEditingController();
+final phoneController = TextEditingController();
 
-final personIcon = const Icon(Icons.person);
-final emailIcon = const Icon(Icons.email);
+const  personIcon = Icon(Icons.person);
+const  emailIcon =  Icon(Icons.email);
+const phoneIcon =   Icon(Icons.phone);
 
 class SignUp extends StatelessWidget {
 
@@ -28,6 +30,7 @@ class SignUp extends StatelessWidget {
     String email = emailController.text;
     String password = passwordController.text;
     String confirmedPassword = confirmPasswordController.text;
+    String phoneNumber = phoneController.text;
 
     String saveCustomerURL = BackendUrl.saveCustomer;
 
@@ -42,7 +45,8 @@ class SignUp extends StatelessWidget {
           'username' : name,
           'email' : email,
           'password' : password,
-          'confirmedPassword' : confirmedPassword
+          'confirmedPassword' : confirmedPassword,
+          'phoneNumber' : phoneNumber
         })
       );
 
@@ -117,6 +121,14 @@ class SignUp extends StatelessWidget {
                   obscureText: false,
                   icon: emailIcon),
               const SizedBox(height: 45),
+
+              MyTextField(
+                  controller: phoneController,
+                  hintText: "Phone Number",
+                  obscureText: false,
+                  icon: phoneIcon),
+              const SizedBox(height: 45),
+
               PasswordTextField(
                   controller: passwordController,
                   hintText: "Password",
