@@ -10,7 +10,7 @@ class SecureStorage {
 
   final FlutterSecureStorage _storage = FlutterSecureStorage();
 
-  Future<void> saveData(String key, String value) async {
+  Future<void> saveData(String key, String value) async {  
     await _storage.write(key: key, value: value);
   }
 

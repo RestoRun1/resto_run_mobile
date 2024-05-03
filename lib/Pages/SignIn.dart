@@ -59,6 +59,7 @@ class SignIn extends StatelessWidget {
         singletonUser.setEmail(user['email']);
         singletonUser.setUserId("${user['userId']}");
         singletonUser.setUsername(user['username']);
+        singletonUser.setPhoneNumber(user['phoneNumber']);
 
         await storage.saveData("email", user['email']);
         await storage.saveData("userId", "${user['userId']}");

@@ -10,6 +10,7 @@ import 'package:resto_run_mobile/Pages/Notification.dart';
 import 'package:resto_run_mobile/Pages/OrderTrackingPage.dart';
 import 'package:resto_run_mobile/Pages/PaymentSuccessPage.dart';
 import 'package:resto_run_mobile/Pages/ProfilePage.dart';
+import 'package:resto_run_mobile/Pages/RestaurantPage.dart';
 import 'package:resto_run_mobile/Pages/Scanner.dart';
 import 'package:resto_run_mobile/Pages/SettingsPage.dart';
 import 'package:resto_run_mobile/Pages/SignUp.dart';
@@ -22,6 +23,7 @@ import 'Pages/Notification.dart';
 import 'Pages/MyReservations.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
       home: SignIn(), //Scaffold(body: SafeArea(child: NotificationPage(),)),
       routes: {
@@ -51,7 +54,8 @@ class MyApp extends StatelessWidget {
         '/scanner': (context) => Scanner(),
         '/faq': (context) => FAQ(),
         '/map': (context) => const MapPage(),
-        '/myReservations': (context) => MyReservations()
+        '/myReservations': (context) => MyReservations(),
+        '/restaurant' : (context) => RestaurantPage()
       },
     );
   }

@@ -86,6 +86,11 @@ flutter:
     - assets/selected.svg
     - assets/dominosTest.svg
     - assets/explanation.jpeg
+    - assets/res.jpg
+    - assets/pizza1.png
+    - assets/pizza2.png
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

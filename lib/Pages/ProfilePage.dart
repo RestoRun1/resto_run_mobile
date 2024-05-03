@@ -16,7 +16,7 @@ class ProfilePage extends StatelessWidget {
       child: Stack(
         children: [
           upContainer(currentWidth, currentHeight),
-          Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               DownContainer(),
@@ -83,13 +83,13 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Text createName() {
-    return Text(
-      "Efe Can Tepe",
-      style: TextStyle(
-          color: AppColors.dotBlack, fontSize: 20, fontWeight: FontWeight.w500),
-    );
-  }
+  // Text createName() {
+  //   return Text(
+  //     "Efe Can Tepe",
+  //     style: TextStyle(
+  //         color: AppColors.dotBlack, fontSize: 20, fontWeight: FontWeight.w500),
+  //   );
+  // }
 
   Widget createProfileImage(double currentHeight) {
     return CircleAvatar(
@@ -97,7 +97,7 @@ class ProfilePage extends StatelessWidget {
       backgroundColor: AppColors.white,
       child: CircleAvatar(
         radius: Helper.dependOnWidth(104) * currentHeight / 4,
-        backgroundImage: AssetImage("assets/efe.png"),
+        backgroundImage: const AssetImage("assets/efe.png"),
       ),
     );
   }
@@ -161,7 +161,7 @@ class ProfileItemRow extends StatelessWidget {
               if (secondaryText != null)
                 Text(
                   secondaryText ?? "",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColors.unselectedTextGrey, fontSize: 12),
                 ),
             ],
@@ -184,7 +184,6 @@ class DownContainer extends StatelessWidget {
     }
 
     final double currentHeight = MediaQuery.sizeOf(context).height;
-
     final double currentWidth = MediaQuery.sizeOf(context).width;
 
     return SizedBox(
@@ -213,24 +212,27 @@ class DownContainer extends StatelessWidget {
             ProfileItemRow(
                 backgroundColor: AppColors.callBlue,
                 iconColor: AppColors.white,
-                mainText: "+90 5432305782",
+                mainText: User().phoneNumber,
                 secondaryText: "Mobile Number",
                 icon: Icons.call),
             ProfileItemRow(
                 backgroundColor: AppColors.mailGreen,
                 iconColor: AppColors.white,
-                mainText: "ulvinomarov@mail.com",
+                mainText: User().email,
                 secondaryText: "Email",
                 icon: Icons.mail),
-            ProfileItemRow(
-                backgroundColor: AppColors.tarifOrange,
-                iconColor: AppColors.white,
-                mainText: "+Tariffs",
-                secondaryText: null,
-                icon: Icons.receipt),
+            
+            // TODO: WHAT THE FUCK IS THIS SHIT!!
+            // const ProfileItemRow(
+            //     backgroundColor: AppColors.tarifOrange,
+            //     iconColor: AppColors.white,
+            //     mainText: "+Tariffs",
+            //     secondaryText: null,
+            //     icon: Icons.receipt),
+            
             GestureDetector(
                 onTap: gotoSettings,
-                child: ProfileItemRow(
+                child: const ProfileItemRow(
                     backgroundColor: AppColors.settingsRed,
                     iconColor: AppColors.white,
                     mainText: "Settings",

@@ -68,7 +68,7 @@ class _MainPageState extends State<MainPage> {
       ),
       drawer: SideBar(),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -97,10 +97,10 @@ class _MainPageState extends State<MainPage> {
                 height: 60 / 812 * currentHeight,
               ),
               HorizontalListViewButton(),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Expanded(
+              const Expanded(
                 child: RestaurantGridLayout(),
               )
             ],
