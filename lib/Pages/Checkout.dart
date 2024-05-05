@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
 import 'package:resto_run_mobile/Components/BackButtonComponent.dart';
+import 'package:resto_run_mobile/Model/shopping_cart.dart';
 import 'package:resto_run_mobile/Pages/CreditCardTest.dart';
 import 'package:resto_run_mobile/Pages/YourCart.dart';
 import 'package:resto_run_mobile/helper.dart';
@@ -16,8 +17,11 @@ class Checkout extends StatefulWidget {
 }
 
 class _Checkout extends State<Checkout> {
+
   final int INPUT_SELECTED = 0;
   final int CARD_SELECTED = 1;
+
+  ShoppingCart shoppingCart = ShoppingCart();
 
   int selection = 0;
 
@@ -60,54 +64,58 @@ class _Checkout extends State<Checkout> {
   Widget mainBody(double currentHeight) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          BackButtonComponent(),
-          Expanded(
-            child: Container(),
-          ),
-          TitleRow(),
-          SizedBox(
-            height: 20,
-          ),
-          CardButtons(
-            switchMyCards: swithcMyCards,
-            switchNewCards: switchNewCards,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          IndexedStack(
-            alignment: Alignment.topCenter,
-            index: selection,
-            children: [
-              CardInputSections(), // Index 0
-              Cards()
-            ],
-          ),
-          Center(
-            child: const Column(
+      child: Container(
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BackButtonComponent(),
+            TitleRow(),
+            SizedBox(
+              height: 20,
+            ),
+            CardButtons(
+              switchMyCards: swithcMyCards,
+              switchNewCards: switchNewCards,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            IndexedStack(
+              alignment: Alignment.topCenter,
+              index: selection,
               children: [
-                Text(
-                  "We will send you an order details to your",
-                  style: TextStyle(color: AppColors.textGrey, fontSize: 12),
-                ),
-                Text(
-                  "email after the succesfull payment",
-                  style: TextStyle(color: AppColors.textGrey, fontSize: 12),
-                ),
+                CardInputSections(), // Index 0
+                Cards()
               ],
             ),
-          ),
-          SizedBox(
-            height: Helper.dependOnHeight(22) * currentHeight,
-          ),
-          PayButton(currentHeight),
-          SizedBox(
-            height: Helper.dependOnHeight(20) * currentHeight,
-          )
-        ],
+
+            Spacer(),
+
+            const Center(
+              child: Column(
+                children: [
+                  Text(
+                    "We will send you an order details to your",
+                    style: TextStyle(color: AppColors.textGrey, fontSize: 12),
+                  ),
+                  Text(
+                    "email after the succesfull payment",
+                    style: TextStyle(color: AppColors.textGrey, fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: Helper.dependOnHeight(22) * currentHeight,
+            ),
+            PayButton(currentHeight),
+            SizedBox(
+              height: Helper.dependOnHeight(20) * currentHeight,
+            )
+          ],
+        ),
       ),
     );
   }
@@ -219,6 +227,7 @@ class CardInputSections extends StatelessWidget {
           width: double.infinity,
           height: Helper.dependOnHeight(56) * currentHeight,
           child: TextField(
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
             obscureText: true,
             decoration: InputDecoration(
               filled: true,
@@ -274,6 +283,15 @@ class CardInputSections extends StatelessWidget {
                   Container(
                     height: Helper.dependOnHeight(56) * currentHeight,
                     child: TextField(
+
+                      inputFormatters: [
+
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(6)
+
+                      ],
+
+                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
                       // Your first TextField properties go here
                       decoration: InputDecoration(
                         hintText: "MM / YYYY",
@@ -300,6 +318,7 @@ class CardInputSections extends StatelessWidget {
                   Container(
                     height: Helper.dependOnHeight(56) * currentHeight,
                     child: TextField(
+                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
                       // Your second TextField properties go here
                       decoration: InputDecoration(
                         hintText: "_ _ _ ",
@@ -356,7 +375,7 @@ class _TitleRowState extends State<TitleRow> {
         Column(
           children: [
             Text(
-              "₹ 1,527",
+              "\$${ShoppingCart().getSum()}",
               style: TextStyle(
                   color: AppColors.lightGreen,
                   fontSize: 20,

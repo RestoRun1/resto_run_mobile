@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
 import 'package:resto_run_mobile/Components/HomeSearchBar.dart';
+import 'package:resto_run_mobile/Pages/MealOrder.dart';
 import 'package:resto_run_mobile/backend_url.dart';
 import 'package:resto_run_mobile/helper.dart';
 import 'package:http/http.dart' as http;
@@ -267,14 +268,26 @@ class _MealSectionState extends State<MealSection> {
                       children: [
                         Text("${_meal["name"]}"),
                         SizedBox(height: 10,),
-                        Text("${_meal["description"]}"),
-                        SizedBox(height: 40,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("${_meal["price"]}₺"),
                             
-                            ElevatedButton(onPressed: () => debugPrint("Clicked"), child: Text("Order Now")),
+                            ElevatedButton(
+                              onPressed: () { 
+                                
+                                Navigator.push(
+
+                                  context,
+                                  MaterialPageRoute(builder: (context) => MealOrder(meal: _meal))
+
+                                );
+                              
+                              }, 
+                              
+                              child: Text("Order Now")
+                            ),
+
                           ],
                         )
 

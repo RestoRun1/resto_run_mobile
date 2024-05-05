@@ -30,4 +30,11 @@ class AppColors {
   static const Color settingsRed = Color.fromRGBO(252, 115, 57, 1);
   static const Color notificationYellow = Color.fromRGBO(255, 170, 0, 1);
   static const Color notificationPurple = Color.fromRGBO(175, 150, 251, 1);
+
+  // Meal Order
+  
+  static const Color mealOrderDarkGreen = Color.fromRGBO(11, 86, 51, 1);
+
+
+
 }

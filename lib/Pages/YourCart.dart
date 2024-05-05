@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:resto_run_mobile/Color/AppColors.dart';
 import 'package:resto_run_mobile/Components/BackButtonComponent.dart';
+import 'package:resto_run_mobile/Model/shopping_cart.dart';
 import 'package:resto_run_mobile/helper.dart';
 import 'package:resto_run_mobile/main.dart';
 import 'package:sizer/sizer.dart';
@@ -35,10 +38,26 @@ class YourCart extends StatefulWidget {
 }
 
 class _YourCart extends State<YourCart> {
+
+  bool rerender = false;
+
+  triggerRender(){
+
+    setState(() {
+      rerender = !rerender;
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    debugPrint("SD");
+    
     final double currentWidth = MediaQuery.sizeOf(context).width;
     final double currentHeight = MediaQuery.sizeOf(context).height;
+
+    final double _sum = ShoppingCart().getSum();
 
     void handleCheckout() {
       Navigator.pushNamed(context, '/checkout');
@@ -77,10 +96,10 @@ class _YourCart extends State<YourCart> {
                         child: ListView(
                           shrinkWrap: false,
                           physics: ClampingScrollPhysics(),
-                          children: shopItems
+                          children: ShoppingCart().getListMap()
                               .map((e) => Padding(
                                     padding: const EdgeInsets.only(bottom: 10),
-                                    child: (ShoppingCartItem(shopItem: e)),
+                                    child: (ShoppingCartItem(shopItem: e, isRerender: rerender, triggerRender: triggerRender ,)),
                                   ))
                               .toList(),
                         ),
@@ -94,10 +113,10 @@ class _YourCart extends State<YourCart> {
                         height: 3.h,
                       ),
 
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "Total",
                             style: TextStyle(
                                 color: AppColors.textGrey,
@@ -105,8 +124,8 @@ class _YourCart extends State<YourCart> {
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            "₹ 1,527",
-                            style: TextStyle(
+                            "${_sum}",
+                            style: const TextStyle(
                                 color: AppColors.lightGreen,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
@@ -120,7 +139,7 @@ class _YourCart extends State<YourCart> {
 
                       Container(
                         width: double.infinity,
-                        height: Helper.dependOnHeight(85) * currentHeight,
+                        height: Helper.dependOnHeight(60) * currentHeight,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.lightGreen,
@@ -147,14 +166,28 @@ class _YourCart extends State<YourCart> {
 
 class ShoppingCartItem extends StatefulWidget {
   final Map<String, String> shopItem;
+  final bool isRerender;
+  final Function triggerRender;
 
-  const ShoppingCartItem({super.key, required this.shopItem});
+  const ShoppingCartItem({super.key, required this.shopItem, required this.isRerender, required this.triggerRender});
 
   @override
   State<ShoppingCartItem> createState() => _ShoppingCartItem();
 }
 
 class _ShoppingCartItem extends State<ShoppingCartItem> {
+
+  late int itemCount;
+  late bool isRerender;
+
+  @override
+  void initState(){
+
+    super.initState();
+    itemCount = int.parse(widget.shopItem["itemCount"]!);
+    isRerender = widget.isRerender;
+  }
+
   @override
   Widget build(BuildContext context) {
     final double currentHeight = MediaQuery.sizeOf(context).height;
@@ -174,7 +207,7 @@ class _ShoppingCartItem extends State<ShoppingCartItem> {
                     color: Color.fromRGBO(234, 221, 205, 1),
                     borderRadius: BorderRadius.circular(16)),
                 child: Image.asset(
-                  widget.shopItem["image"]!,
+                  "assets/pizza2.png",
                   height: 100,
                 )),
             SizedBox(
@@ -185,19 +218,16 @@ class _ShoppingCartItem extends State<ShoppingCartItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.shopItem["brand"]!,
+                    widget.shopItem["name"]!,
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
-                  Text(widget.shopItem["description"]!,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          widget.shopItem['price']!,
-                          style: TextStyle(
+                          "\u{20BA}${ double.parse(widget.shopItem['price']!) * itemCount}",
+                          style: const TextStyle(
                               color: AppColors.lightGreen,
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
@@ -210,23 +240,38 @@ class _ShoppingCartItem extends State<ShoppingCartItem> {
                           ),
                           
                           child: Row(
-                          
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                          
-                            children: [
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
                               IconButton(
-                                  onPressed: () => print("Minus Is Clicked"),
-                                  icon: Icon(
-                                    Icons.remove,
-                                    color: AppColors.lightGreen,
-                                  )),
+                                icon: Icon(Icons.remove),
+                                onPressed: () {
+                                  setState(() {
+                                    if(itemCount != 0 ){
+                                      itemCount--;
+                                      ShoppingCart().setItemCountById(int.parse(widget.shopItem["id"]!), itemCount);
+                                      isRerender = !isRerender;
+                                      widget.triggerRender();
+                                    }
+                                  });
+                                },
+                              ),
                               Text(
-                                "1",
+                                '${itemCount}',
+                                style: TextStyle(fontSize: 12),
                               ),
                               IconButton(
-                                  onPressed: () => print("Plus Is Clicked"),
-                                  icon: Icon(Icons.add,
-                                      color: AppColors.lightGreen)),
+                                icon: Icon(Icons.add),
+                                onPressed: () {
+
+                                  setState(() {
+                                    itemCount++;
+                                    ShoppingCart().setItemCountById(int.parse(widget.shopItem["id"]!), itemCount);
+                                    isRerender = !isRerender;
+                                    widget.triggerRender();
+                                  });
+
+                                },
+                              ),
                             ],
                           ),
                         )
