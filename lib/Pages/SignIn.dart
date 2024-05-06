@@ -26,12 +26,36 @@ class SignIn extends StatelessWidget {
 
     String loginUrl = BackendUrl.loginUrl;
 
+    //String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsInJvbGVzIjpbIlJPTEVfTUFOQUdFUiJdLCJpYXQiOjE3MTQ5OTMzMTAsImV4cCI6MTcxNTA3OTcxMH0.v63OXQ-vPMFcvO8A0B0HbLw-s0vKwIRHu0jgYAkFIbs";
+    //List<String> roles;
 
     try{
 
-      final response = await http.get(
-        Uri.parse("$loginUrl?username=$username&password=$password"),
-      );
+      final response = await http.post(
+      Uri.http("10.0.2.2:8080", "/api/customer/login", {"username": username, "password": password}),
+      
+      // headers: {
+      //   'Authorization': "Bearer $token",
+      // },
+    );
+
+    final responseToken = await http.post(
+      Uri.http("10.0.2.2:8080", "/api/auth/login"),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        "username": username,
+        "password": password,
+      }),
+    );
+
+   
+    Map<String , dynamic> responseJson = json.decode(responseToken.body);
+    String token = responseJson["token"];
+
+    
+    //debugPrint(responseJson["token"]); 
 
       if(response.statusCode != 200){
 
@@ -48,22 +72,22 @@ class SignIn extends StatelessWidget {
       else{
         SecureStorage storage = SecureStorage();
         Map<String, dynamic> user = json.decode(response.body);
-
         debugPrint(user.toString());
-
         var userIdType = user["userId"].runtimeType;
-
         debugPrint(userIdType.toString());
-
         User singletonUser = User();
         singletonUser.setEmail(user['email']);
         singletonUser.setUserId("${user['userId']}");
         singletonUser.setUsername(user['username']);
         singletonUser.setPhoneNumber(user['phoneNumber']);
+        singletonUser.setToken(token);
+
+        debugPrint("TOKEN IS ->>>> $token");
 
         await storage.saveData("email", user['email']);
         await storage.saveData("userId", "${user['userId']}");
         await storage.saveData("username", user['username']);
+        await storage.saveData("token", token);
 
         // I dont know why this code is necessity !!  
         if (!context.mounted) return;

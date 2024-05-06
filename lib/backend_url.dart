@@ -3,9 +3,10 @@ class BackendUrl {
 
 
   //Customer Url
-  static String saveCustomer = "$baseUrl/api/customer/saveCustomer";
+  static String saveCustomer = "/api/customer/saveCustomerMobile";
   static String loginUrl = "$baseUrl/api/customer/login";
-  static String getAllRestaurants = "$baseUrl/api/restaurant/retrieveAllRestaurants";
-  static String mealById = "$baseUrl/api/meal/retrieveMealById";
+  static String getAllRestaurants = "/api/restaurant/retrieveAllRestaurants";
+  static String mealById = "api/meal/retrieveMealById";
+  static String addReservation = "api/reservation/saveReservation";
   
 }

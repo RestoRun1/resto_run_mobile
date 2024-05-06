@@ -3,6 +3,7 @@ class User {
   late String _username;
   late String _userId;
   late String _phoneNumber;
+  late String _token;
 
   // Private constructor
   User._privateConstructor();
@@ -20,6 +21,12 @@ class User {
   String get username => _username;
   String get userId => _userId;
   String get phoneNumber => _phoneNumber;
+  String get token => _token;
+
+
+  setToken(String token){
+    _token = token;
+  }
 
   // Setters for email, username, and userId
   setEmail(String email) {

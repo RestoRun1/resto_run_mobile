@@ -37,7 +37,7 @@ class SignUp extends StatelessWidget {
     try {
       final response = await http.post(
 
-        Uri.parse(saveCustomerURL),
+        Uri.http( "10.0.2.2:8080" , saveCustomerURL),
         headers: <String, String> {
           'Content-Type' : 'application/json; charset=UTF-8',
         },

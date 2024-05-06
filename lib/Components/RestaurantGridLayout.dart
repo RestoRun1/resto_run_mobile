@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:resto_run_mobile/backend_url.dart';
 import 'dart:convert';
 
+import 'package:resto_run_mobile/user.dart';
+
 
 
 class RestaurantGridLayout extends StatefulWidget {
@@ -24,7 +26,7 @@ class _RestaurantGridLayout extends State<RestaurantGridLayout> {
 
       restaurants = data;
       isLoading = false;
-      print(restaurants);
+      debugPrint( " RESTAURANTS ->>>>>>>" + restaurants.toString());
 
     }).catchError((onError){
 
@@ -41,10 +43,15 @@ class _RestaurantGridLayout extends State<RestaurantGridLayout> {
     
     String allRestaurantUrl = BackendUrl.getAllRestaurants;
 
+    debugPrint("URL IS all ${BackendUrl.baseUrl}$allRestaurantUrl");
+    
     try{
 
       final response = await http.get(
-        Uri.parse(allRestaurantUrl)
+        Uri.parse("${BackendUrl.baseUrl}$allRestaurantUrl"),
+        headers: {
+          'Authorization': 'Bearer ${User().token}',
+        },
       );
 
       if(response.statusCode != 200){
