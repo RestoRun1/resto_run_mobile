@@ -66,7 +66,7 @@ class _MealOrderState extends State<MealOrder> {
                   ),
                 ),
 
-                Text("\u{20BA}${_meal["price"] * _mealCount}", 
+                Text("\$${_meal["price"] * _mealCount}", 
                   style: const TextStyle(
                     color: AppColors.lightGreen,
                     fontSize: 18

@@ -1,6 +1,4 @@
-
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
@@ -11,8 +9,6 @@ import 'package:resto_run_mobile/backend_url.dart';
 import 'package:resto_run_mobile/helper.dart';
 import 'package:http/http.dart' as http;
 import 'package:resto_run_mobile/user.dart';
-
-
 
 class RestaurantPage extends StatefulWidget{
 
@@ -62,7 +58,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
 
     return Scaffold(
 
-      backgroundColor: Color.fromARGB(255, 156, 138, 138),
+      backgroundColor: AppColors.lightGreen,
       appBar: AppBar(
 
         actions: <Widget> [
@@ -144,8 +140,6 @@ class MealList extends StatefulWidget{
 
   );
 
-
-
   @override
   State<MealList> createState() => _MealListState();
 }
@@ -158,6 +152,7 @@ class _MealListState extends State<MealList> {
 
     // String url = "${BackendUrl.mealById}?resId=$resId";
     // //final Uri uri = Uri.parse(url);
+
     final String resIdParam = Uri.encodeQueryComponent("$resId");
 
 
@@ -286,12 +281,9 @@ class _MealSectionState extends State<MealSection> {
 
   late Map<String, dynamic> _meal;
 
-
   void initState(){
-
     super.initState();
     _meal = widget.meal;
-
   }
 
   @override
@@ -301,9 +293,6 @@ class _MealSectionState extends State<MealSection> {
     final double currentWidth = MediaQuery.sizeOf(context).width;
 
     return Container(
-
-      
-      
       decoration: BoxDecoration(
 
         color: AppColors.white,
@@ -343,9 +332,17 @@ class _MealSectionState extends State<MealSection> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("${_meal["price"]}₺"),
+                            Text("${_meal["price"]}\$"),
                             
                             ElevatedButton(
+
+                              style: const ButtonStyle(
+
+                                backgroundColor: MaterialStatePropertyAll(AppColors.backgroundLightWhite)
+
+
+                              ),
+
                               onPressed: () { 
                                 
                                 Navigator.push(
@@ -357,28 +354,27 @@ class _MealSectionState extends State<MealSection> {
                               
                               }, 
                               
-                              child: Text("Order Now")
-                            ),
+                              child: const Text(
+                                "Order Now",
+                                style: TextStyle(
 
+                                  color: AppColors.lightGreen
+
+                                ),
+                                )
+                            ),
                           ],
                         )
-
-
                       ],
                     ),
                   ),
                 )
-
               ],
             ),
           )
-
         ],
-
       ),
-
     );
-
   }
 }
 
@@ -438,7 +434,7 @@ Future<void> _selectDate(BuildContext context) async {
           SizedBox(height: 20),
           TextField(
             keyboardType: TextInputType.number,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Number of Guests',
             ),
             onChanged: (value) {
@@ -447,9 +443,9 @@ Future<void> _selectDate(BuildContext context) async {
               });
             },
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Special Request',
             ),
             onChanged: (value) {
@@ -465,19 +461,16 @@ Future<void> _selectDate(BuildContext context) async {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
         ),
         ElevatedButton(
           onPressed: () async {
               
             DateConverter.convertJavaVersion(_selectedDate);
 
-            // print("${}");
-
-            // Perform reservation logic here
-            print('Date: $_selectedDate');
-            print('Number of Guests: $_numberOfGuests');
-            print('Special Request: $_specialRequest');
+            // print('Date: $_selectedDate');
+            // print('Number of Guests: $_numberOfGuests');
+            // print('Special Request: $_specialRequest');
             
             String url = BackendUrl.addReservation;
 
@@ -510,7 +503,7 @@ Future<void> _selectDate(BuildContext context) async {
             
             Navigator.of(context).pop();
           },
-          child: Text('Reserve'),
+          child: const Text('Reserve'),
         ),
       ],
     );
@@ -525,7 +518,7 @@ class DateConverter{
     List<String> charArray = time.toString().split('');
     charArray[10] = "T";
     String result = charArray.join("");
-    print("CONVERTED STRING IS RESULT ${result}"); 
+    // print("CONVERTED STRING IS RESULT ${result}"); 
     return result;
     
 
@@ -580,9 +573,6 @@ class DateConverter{
     default:
       print('Invalid month');
   }
-
     return "${day} ${monthText} ${year}";
-
   }
-
 }

@@ -26,7 +26,11 @@ class _Checkout extends State<Checkout> {
   int selection = 0;
 
   void payOrder() {
-    Navigator.pushNamed(context, '/paymentSuccess');
+
+    ShoppingCart().orderAllList();
+
+
+    //Navigator.pushNamed(context, '/paymentSuccess');
   }
 
   void swithcMyCards() {

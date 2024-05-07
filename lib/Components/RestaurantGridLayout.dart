@@ -34,9 +34,6 @@ class _RestaurantGridLayout extends State<RestaurantGridLayout> {
 
     });
       
-    
-
-
   }
 
   Future<List<dynamic>> _getRestaurants() async{

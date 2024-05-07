@@ -9,26 +9,26 @@ import 'package:resto_run_mobile/main.dart';
 import 'package:sizer/sizer.dart';
 import 'package:logger/logger.dart';
 
-List<Map<String, String>> shopItems = [
-  {
-    'brand': "Milk",
-    'description': "It is a milk",
-    'price': "165",
-    'image': "assets/bottle_milk.png"
-  },
-  {
-    'brand': "Milk",
-    'description': "It is a milk",
-    'price': "165",
-    'image': "assets/bottle_milk.png"
-  },
-  {
-    'brand': "Milk",
-    'description': "It is a milk",
-    'price': "165",
-    'image': "assets/bottle_milk.png"
-  },
-];
+// List<Map<String, String>> shopItems = [
+//   {
+//     'brand': "Milk",
+//     'description': "It is a milk",
+//     'price': "165",
+//     'image': "assets/bottle_milk.png"
+//   },
+//   {
+//     'brand': "Milk",
+//     'description': "It is a milk",
+//     'price': "165",
+//     'image': "assets/bottle_milk.png"
+//   },
+//   {
+//     'brand': "Milk",
+//     'description': "It is a milk",
+//     'price': "165",
+//     'image': "assets/bottle_milk.png"
+//   },
+// ];
 
 class YourCart extends StatefulWidget {
   const YourCart({super.key});
@@ -91,19 +91,8 @@ class _YourCart extends State<YourCart> {
                       SizedBox(
                         height: Helper.dependOnHeight(41) * currentHeight,
                       ),
-
-                      Flexible(
-                        child: ListView(
-                          shrinkWrap: false,
-                          physics: ClampingScrollPhysics(),
-                          children: ShoppingCart().getListMap()
-                              .map((e) => Padding(
-                                    padding: const EdgeInsets.only(bottom: 10),
-                                    child: (ShoppingCartItem(shopItem: e, isRerender: rerender, triggerRender: triggerRender ,)),
-                                  ))
-                              .toList(),
-                        ),
-                      ),
+                    
+                      getMainWidget(),
 
                       SizedBox(
                         height: 3.h,
@@ -124,7 +113,7 @@ class _YourCart extends State<YourCart> {
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            "${_sum}",
+                            " \$ ${ _sum.toStringAsFixed(2)}",
                             style: const TextStyle(
                                 color: AppColors.lightGreen,
                                 fontSize: 20,
@@ -161,6 +150,34 @@ class _YourCart extends State<YourCart> {
         ),
       ),
     );
+  }
+
+  Widget getMainWidget() {
+
+    if(ShoppingCart().getListMap().isEmpty){
+
+      return const Expanded(
+        child: Center(
+          child: Text("Shopping Cart is empty"),
+        ),
+      );
+
+    }
+
+
+
+    return Flexible(
+                      child: ListView(
+                        shrinkWrap: false,
+                        physics: ClampingScrollPhysics(),
+                        children: ShoppingCart().getListMap()
+                            .map((e) => Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: (ShoppingCartItem(shopItem: e, isRerender: rerender, triggerRender: triggerRender ,)),
+                                ))
+                            .toList(),
+                      ),
+                    );
   }
 }
 
@@ -226,7 +243,7 @@ class _ShoppingCartItem extends State<ShoppingCartItem> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "\u{20BA}${ double.parse(widget.shopItem['price']!) * itemCount}",
+                          "\$ ${(double.parse(widget.shopItem['price']!) * itemCount).toStringAsFixed(2)}",
                           style: const TextStyle(
                               color: AppColors.lightGreen,
                               fontSize: 18,
@@ -253,6 +270,11 @@ class _ShoppingCartItem extends State<ShoppingCartItem> {
                                       widget.triggerRender();
                                     }
                                   });
+
+                                  if(itemCount == 0){
+                                    ShoppingCart().removeElement(int.parse(widget.shopItem["id"]!));
+                                  }
+
                                 },
                               ),
                               Text(
