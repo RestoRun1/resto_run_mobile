@@ -361,7 +361,7 @@ class _TitleRowState extends State<TitleRow> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
+        const Row(
           children: [
             Text(
               "Checkout",

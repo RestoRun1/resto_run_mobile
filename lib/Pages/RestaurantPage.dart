@@ -397,6 +397,9 @@ class _ReservationDialogState extends State<ReservationDialog> {
   int _numberOfGuests = 1;
   String _specialRequest = '';
 
+  int _tableId = 1;
+
+
 Future<void> _selectDate(BuildContext context) async {
   final DateTime? picked = await showDatePicker(
     context: context,
@@ -486,7 +489,7 @@ Future<void> _selectDate(BuildContext context) async {
                 },
 
                 body: jsonEncode(<String, dynamic>{
-                  'tableId' : 1, 
+                  'tableId' : _tableId, 
                   'customerId' : int.parse (User().userId),
                   'reservationTime' : DateConverter.convertJavaVersion(_selectedDate),
                   'numberOfGuests' : _numberOfGuests,
@@ -500,7 +503,7 @@ Future<void> _selectDate(BuildContext context) async {
 
             print(response.statusCode);
             
-            
+            _tableId++;
             Navigator.of(context).pop();
           },
           child: const Text('Reserve'),
